@@ -1,0 +1,16 @@
+﻿@model dynamic
+
+<ul class="nav navbar-nav">
+ 
+    @if (Request.IsAuthenticated)
+    {
+        
+        <li>@Html.ActionLink("Devices", "Index", "Device")</li>
+    }
+    else
+    {
+        <li> <p>""</p> </li>
+        
+    }
+</ul>
+

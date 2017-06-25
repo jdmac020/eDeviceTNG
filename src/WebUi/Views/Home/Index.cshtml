@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    body {
+  background: url(/Content/Images/image.jpg); /* Moved to Content folder to get around a security configuration. ---JDM */
+}
+    header {
+        margin: 0;
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) 
+    }
+    article {
+
+}
+    #Adjustedh1 {
+        color: white;
+        font-size: 100px;
+        font-style: oblique;
+        font-family: cursive;
+        /**/
+        }
+</style>
+
+<body>
+    <header>
+        @if (Request.IsAuthenticated)
+        {
+                <div id="Adjustedh1">How Ya'll Feeling Today?!</div>
+        }
+        else
+        {
+                <div id="Adjustedh1">Log In Or Sign Up!</div>
+        }
+    </header>
+
+<article>
+    <section>
+
+    </section>
+        
+    <section>
+        
+    </section>
+</article>
+</body>.
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/indexJavaScript.js"></script>
+}

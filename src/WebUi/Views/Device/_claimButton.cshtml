@@ -1,0 +1,13 @@
+﻿@model EDeviceClaims.WebUi.Models.DeviceViewModel
+
+
+@if (Model.ShowViewClaimButton())
+{
+    @Html.ActionLink("View Claim", "ViewClaim", "Claim", routeValues: new { id = Model.MostCurrentClaim.Id },
+       htmlAttributes: new { Class = "btn btn-warning btn-lg" })
+}
+else
+{
+    @Html.ActionLink("Open Claim", "StartClaim", "Claim", routeValues: new { id = Model.PolicyId },
+    htmlAttributes: new { Class = "btn btn-danger btn-lg" })
+}

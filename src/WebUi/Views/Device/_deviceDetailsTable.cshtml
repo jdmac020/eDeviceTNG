@@ -1,0 +1,18 @@
+﻿@model EDeviceClaims.WebUi.Models.DeviceViewModel
+
+<div>
+    <table class="table" id="deviceListTable">
+        <tr>
+            <th>@Html.Label("Device")</th>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("Serial Number")</th>
+            <td>@Model.SerialNumber</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("Policy")</th>
+            <td>@Model.PolicyNumber</td>
+        </tr>
+    </table>
+</div>
