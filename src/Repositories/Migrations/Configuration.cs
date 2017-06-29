@@ -32,12 +32,16 @@ namespace EDeviceClaims.Repositories.Migrations
             //    );
             //
 
-            //var roleStore = new RoleStore<IdentityRole>(context);
-            //var roleManager = new RoleManager<IdentityRole>(roleStore);
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-            var policyHolder = CreateUser("user@personal.com", "user@personal.com", context);
-            CreateUser("admin@company.com", "admin@company.com", context);
-            CreateUser("callcenter@company.com", "callcenter@company.com", context);
+            roleManager.Create(new IdentityRole {Name = "admin"});
+            roleManager.Create(new IdentityRole {Name = "underwriter"});
+            roleManager.Create(new IdentityRole {Name = "policyHolder"});
+
+            var policyHolder = CreateUser("user@personal.com", "user@personal.com", context, Core.Constants.ROLE_POLICYHOLDER);
+            CreateUser("admin@company.com", "admin@company.com", context, Core.Constants.ROLE_ADMIN);
+            CreateUser("callcenter@company.com", "callcenter@company.com", context, Core.Constants.ROLE_UNDERWRITER);
 
             var p1 = new Policy
             {
@@ -87,10 +91,12 @@ namespace EDeviceClaims.Repositories.Migrations
             //context.SaveChanges();
         }
 
-        public AuthorizedUser CreateUser(string userName, string email, EDeviceClaimsContext context)
+        public AuthorizedUser CreateUser(string userName, string email, EDeviceClaimsContext context, string role = Core.Constants.ROLE_POLICYHOLDER)
         {
             var userStore = new UserStore<AuthorizedUser>(context);
             var userManager = new UserManager<AuthorizedUser>(userStore);
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
 
             var user = userManager.FindByEmail(email);
 
@@ -98,8 +104,8 @@ namespace EDeviceClaims.Repositories.Migrations
 
             user = new AuthorizedUser { UserName = userName, Email = email };
             userManager.Create(user, "password");
-            //roleManager.Create(new IdentityRole { Name = "admin" });
-            //userManager.AddToRole(user.Id, "admin");
+            roleManager.Create(new IdentityRole { Name = role });
+            userManager.AddToRole(user.Id, role);
             return user;
         }
     }

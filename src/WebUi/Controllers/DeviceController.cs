@@ -7,7 +7,7 @@ using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-  [Authorize]
+  [Authorize(Roles = Core.Constants.ROLE_POLICYHOLDER)]
   public class DeviceController : AppController
   {
     private IPolicyService _policyService = new PolicyService();

@@ -6,7 +6,7 @@ using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = Core.Constants.ROLE_POLICYHOLDER)]
     public class ClaimController : AppController
     {
         private IClaimService _claimService = new ClaimService();
