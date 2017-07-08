@@ -1,54 +1,127 @@
-﻿@{
+﻿@using EDeviceClaims.Core
+@{
     ViewBag.Title = "Home Page";
 }
 <style>
     body {
-  background: url(/Content/Images/image.jpg); /* Moved to Content folder to get around a security configuration. ---JDM */
+        background: url(/Content/Images/image.jpg);
+         
 }
     header {
+        /*position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);*/
+        /*margin: auto;
+        height: 50%; 
+        width: 50%;
+        display:flex;
         margin: 0;
         position: absolute;
         top: 15%;
         left: 50%;
         margin-right: -50%;
-        transform: translate(-50%, -50%) 
+        transform: translate(-50%, -50%);
+        vertical-align: 50%;*/
     }
-    article {
-
-}
+    
     #Adjustedh1 {
+
         color: white;
-        font-size: 100px;
         font-style: oblique;
         font-family: cursive;
+        font-size: 100px;
+        /*height: 90%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;*/
         /**/
         }
+
+    #adjustedh2 {
+        color: white;
+        font-style: oblique;
+        font-family: cursive;
+        font-size: 50px;
+    }
+
+    .outer {
+        display: table;
+        position: absolute;
+        margin-top: -10%;
+        height: 100%;
+        width: 100%;
+    }
+
+    .middle {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .inner {
+        margin-left: auto;
+        margin-right: auto; 
+        width: 95%;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 
 <body>
     <header>
         @if (Request.IsAuthenticated)
         {
-                <div id="Adjustedh1">How Ya'll Feeling Today?!</div>
+            if (User.IsInRole(AppRoles.PolicyHolder))
+            {
+                <div class="outer">
+                    <div class="middle">
+                        <div class="inner">
+                            
+                            <p id="Adjustedh1">Welcome Back!</p> 
+                            <p id="adjustedh2">Please Click "My Devices" to Start or Review a Claim</p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+            if (User.IsInRole(AppRoles.Underwriter))
+            {
+                <div class="outer">
+                    <div class="middle">
+                        <div class="inner">
+
+                            <p id="Adjustedh1">Thanks for Logging In!</p> 
+                            <p id="adjustedh2">Please Click "Claims" to Review Open Claims</p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+            if (User.IsInRole(AppRoles.Admin))
+            {
+                <div class="outer">
+                    <div class="middle">
+                        <div class="inner">
+
+                            <p id="Adjustedh1">Thanks for Logging In!</p> 
+                            <p id="adjustedh2">I have no idea what you do yet.</p>
+
+                        </div>
+                    </div>
+                </div>
+            }
         }
         else
         {
-                <div id="Adjustedh1">Log In Or Sign Up!</div>
+            <div class="outer">
+                <div class="middle">
+                    <div class="inner">
+                        <p id="Adjustedh1">Please Log In or Register!</p>
+                        <p id="adjustedh2">Nice Device. Shame if Something Were To Happen to It...</p>
+                    </div>
+                </div>
+            </div>
         }
     </header>
 
-<article>
-    <section>
-
-    </section>
-        
-    <section>
-        
-    </section>
-</article>
-</body>.
-
-@section scripts
-{
-    <script type="text/javascript" src="~/Scripts/indexJavaScript.js"></script>
-}
+</body>

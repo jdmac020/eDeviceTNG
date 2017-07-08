@@ -19,7 +19,7 @@
                 <td>@Html.DisplayFor(modelItem => device.Name)</td>
                 <td>@Html.DisplayFor(modelItem => device.SerialNumber)</td>
                 <td>@Html.DisplayFor(modelItem => device.PolicyNumber)</td>
-                <td>@Html.ActionLink("View Details", "Details", "Device", routeValues: new { policyId = device.PolicyId }, htmlAttributes: new { Class = "btn btn-primary btn-lg" }) </td>
+                <td>@Html.ActionLink("View Details", "Details", "Devices", routeValues: new { policyId = device.PolicyId }, htmlAttributes: new { Class = "btn btn-primary btn-lg" }) </td>
 
             </tr>
         }
