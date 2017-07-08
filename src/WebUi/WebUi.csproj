@@ -292,6 +292,7 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="Areas\Underwriter\Views\web.config" />
     <Content Include="Areas\Underwriter\Views\Claims\Index.cshtml" />
+    <Content Include="Areas\Underwriter\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\device_details.js" />
     <Content Include="Scripts\indexJavaScript.js" />

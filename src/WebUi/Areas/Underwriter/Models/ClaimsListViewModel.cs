@@ -33,7 +33,7 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
             Id = claim.Id;
             PolicyId = claim.Policy.Id;
             Name = claim.Policy.DeviceName;
-            Start = $"{claim.WhenStarted.ToShortDateString()} {claim.WhenStarted.ToShortDateString()}";
+            Start = $"{claim.WhenStarted.ToShortDateString()} {claim.WhenStarted.ToShortTimeString()}";
             Status = claim.Status.ToString();
         }
         
