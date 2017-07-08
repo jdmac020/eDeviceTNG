@@ -11,7 +11,8 @@ namespace EDeviceClaims.Repositories
 {
     public interface IClaimRepository : IEfRepository<ClaimEntity, Guid>
     {
-        
+        new ClaimEntity GetById(Guid id);
+        List<ClaimEntity> GetAllOpen();
     }
 
     public class ClaimRepository : EfRepository<ClaimEntity, Guid>, IClaimRepository
@@ -27,6 +28,13 @@ namespace EDeviceClaims.Repositories
             return ObjectSet.Where(c => c.Id == id)
                 .Include(c => c.Policy)
                 .FirstOrDefault();
+        }
+
+        public List<ClaimEntity> GetAllOpen()
+        {
+            return ObjectSet.Where(c => c.Status == ClaimStatus.Open)
+                .Include(c => c.Policy)
+                .ToList();
         }
     }
 }

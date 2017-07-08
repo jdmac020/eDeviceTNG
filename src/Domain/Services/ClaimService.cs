@@ -14,6 +14,8 @@ namespace EDeviceClaims.Domain.Services
         ClaimDomainModel StartClaim(Guid policyId); //This is just Id in the video... // I like knowing whether I'm passing a policy or user or claim ID at a glance
         ClaimDomainModel ViewClaim(Guid policyId); //This too
         ClaimDomainModel GetById(Guid id);
+
+        List<ClaimDomainModel> GetAllOpen();
     }
 
     public class ClaimService : IClaimService
@@ -86,6 +88,16 @@ namespace EDeviceClaims.Domain.Services
             if(claim == null) throw new ArgumentException("Claim does not exist");
 
             return new ClaimDomainModel(claim);
+        }
+
+        public List<ClaimDomainModel> GetAllOpen()
+        {
+            var openClaims = _getClaimInteractor.GetAllOpen();
+
+            // LINQ does this "foreach" action
+            return openClaims
+                .Select(claim => new ClaimDomainModel(claim))
+                .ToList();
         }
     }
 }

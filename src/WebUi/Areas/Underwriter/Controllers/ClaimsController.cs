@@ -9,20 +9,19 @@ using EDeviceClaims.WebUi.Controllers;
 
 namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
 {
-    public class DevicesController : UnderwriterAppController
+    public class ClaimsController : UnderwriterAppController
     {
         private IPolicyService _policyService = new PolicyService();
+        private IClaimService _claimService = new ClaimService();
 
         // GET: Underwriter/Device
         public ActionResult Index()
         {
+            var claims = _claimService.GetAllOpen();
+
             return View("Index");
         }
     }
 
-    [Authorize(Roles = AppRoles.Underwriter)]
-    public class UnderwriterAppController : AppController
-    {
-        
-    }
+    
 }

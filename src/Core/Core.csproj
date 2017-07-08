@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRoles.cs" />
+    <Compile Include="ClaimStatus.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DataAnnotationsValidator.cs" />
