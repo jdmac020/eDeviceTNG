@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.Entities;
 using EDeviceClaims.WebUi.Models;
@@ -12,7 +13,7 @@ using WebUi;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = AppRoles.Admin)]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

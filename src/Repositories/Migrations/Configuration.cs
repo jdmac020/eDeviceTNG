@@ -40,7 +40,7 @@ namespace EDeviceClaims.Repositories.Migrations
             roleManager.Create(new IdentityRole {Name = AppRoles.Underwriter});
             roleManager.Create(new IdentityRole {Name = AppRoles.PolicyHolder});
 
-            var policyHolder = CreateUser("user@personal.com", "user@personal.com", context, Core.Constants.ROLE_POLICYHOLDER);
+            var policyHolder = CreateUser("user@personal.com", "user@personal.com", context);
             CreateUser("admin@company.com", "admin@company.com", context, AppRoles.Admin);
             CreateUser("callcenter@company.com", "callcenter@company.com", context, AppRoles.Underwriter);
 

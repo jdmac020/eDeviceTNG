@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
+using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Models;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    [Authorize(Roles = Core.Constants.ROLE_POLICYHOLDER)]
+    [Authorize(Roles = AppRoles.PolicyHolder)]
     public class ClaimController : AppController
     {
         private IClaimService _claimService = new ClaimService();
