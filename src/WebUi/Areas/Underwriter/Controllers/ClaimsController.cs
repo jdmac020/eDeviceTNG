@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Services;
+using EDeviceClaims.WebUi.Areas.Underwriter.Models;
 using EDeviceClaims.WebUi.Controllers;
 
 namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
@@ -19,9 +18,9 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
         {
             var claims = _claimService.GetAllOpen();
 
-            return View("Index");
+            var model = new ClaimsListViewModel(claims);
+
+            return View("Index", model);
         }
     }
-
-    
 }

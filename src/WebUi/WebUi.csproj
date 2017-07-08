@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Underwriter\Controllers\ClaimsController.cs" />
     <Compile Include="Areas\Underwriter\Controllers\UnderwriterAppController.cs" />
+    <Compile Include="Areas\Underwriter\Models\ClaimsListViewModel.cs" />
     <Compile Include="Areas\Underwriter\UnderwriterAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppController.cs" />
@@ -348,7 +349,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Underwriter\Models\" />
     <Folder Include="Areas\Underwriter\Views\Shared\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
