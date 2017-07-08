@@ -18,9 +18,9 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 
     public class UnderwriterClaimViewModel
     {
-        public ClaimStatus Status { get; set; }
+        public string Status { get; set; }
 
-        public DateTime Start { get; set; }
+        public string Start { get; set; }
 
         public string Name { get; set; }
 
@@ -33,8 +33,8 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
             Id = claim.Id;
             PolicyId = claim.Policy.Id;
             Name = claim.Policy.DeviceName;
-            Start = claim.WhenStarted;
-            Status = claim.Status;
+            Start = $"{claim.WhenStarted.ToShortDateString()} {claim.WhenStarted.ToShortDateString()}";
+            Status = claim.Status.ToString();
         }
         
     }

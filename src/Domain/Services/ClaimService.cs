@@ -92,7 +92,7 @@ namespace EDeviceClaims.Domain.Services
 
         public List<ClaimDomainModel> GetAllOpen()
         {
-            var openClaims = _getClaimInteractor.GetAllOpen();
+            var openClaims = GetClaimInteractor.GetAllOpen();
 
             // LINQ statement that combines a "results = new List<>" and "foreach openClaim" into one...
             return openClaims

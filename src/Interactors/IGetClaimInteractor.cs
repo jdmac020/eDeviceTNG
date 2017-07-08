@@ -35,7 +35,7 @@ namespace EDeviceClaims.Interactors
 
         public List<ClaimEntity> GetAllOpen()
         {
-            return _repo.GetAllOpen();
+            return Repo.GetAllOpen();
         }
     }
 }

@@ -9,7 +9,7 @@
         
         if (User.IsInRole(AppRoles.Underwriter))
         {
-            <li>@Html.ActionLink("Claims","Index","Claims")</li>
+            <li>@Html.ActionLink("Claims","Index","Claims", new {Area = "Underwriter"}, new {})</li>
         }
         if (User.IsInRole(AppRoles.Admin))
         {

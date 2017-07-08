@@ -1,1 +1,27 @@
-﻿<h1> Underwriter Device Index </h1>
+﻿@model EDeviceClaims.WebUi.Areas.Underwriter.Models.ClaimsListViewModel
+
+<h1>All Open Claims</h1>
+
+<table>
+    <tr>
+        <th>Claim Id</th>
+        <th>Policy Id</th>
+        <th>Device</th>
+        <th>Customer</th>
+        <th>Claim Date</th>
+        <th>Status</th>
+    </tr>
+    
+    @foreach (var claim in Model)
+    {
+        <tr>
+            <td>@claim.Id</td>
+            <td>@claim.PolicyId</td>
+            <td>@claim.Name</td>
+            <td>Customer</td>
+            <td>@claim.Start</td>
+            <td>@claim.Status</td>
+        </tr>
+    }
+
+</table>
