@@ -6,6 +6,7 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using EDeviceClaims.Core;
 
 namespace EDeviceClaims.Repositories.Migrations
 {
@@ -35,13 +36,13 @@ namespace EDeviceClaims.Repositories.Migrations
             var roleStore = new RoleStore<IdentityRole>(context);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-            roleManager.Create(new IdentityRole {Name = "admin"});
-            roleManager.Create(new IdentityRole {Name = "underwriter"});
-            roleManager.Create(new IdentityRole {Name = "policyHolder"});
+            roleManager.Create(new IdentityRole {Name = AppRoles.Admin});
+            roleManager.Create(new IdentityRole {Name = AppRoles.Underwriter});
+            roleManager.Create(new IdentityRole {Name = AppRoles.PolicyHolder});
 
             var policyHolder = CreateUser("user@personal.com", "user@personal.com", context, Core.Constants.ROLE_POLICYHOLDER);
-            CreateUser("admin@company.com", "admin@company.com", context, Core.Constants.ROLE_ADMIN);
-            CreateUser("callcenter@company.com", "callcenter@company.com", context, Core.Constants.ROLE_UNDERWRITER);
+            CreateUser("admin@company.com", "admin@company.com", context, AppRoles.Admin);
+            CreateUser("callcenter@company.com", "callcenter@company.com", context, AppRoles.Underwriter);
 
             var p1 = new Policy
             {
@@ -91,7 +92,7 @@ namespace EDeviceClaims.Repositories.Migrations
             //context.SaveChanges();
         }
 
-        public AuthorizedUser CreateUser(string userName, string email, EDeviceClaimsContext context, string role = Core.Constants.ROLE_POLICYHOLDER)
+        public AuthorizedUser CreateUser(string userName, string email, EDeviceClaimsContext context, string role = AppRoles.PolicyHolder)
         {
             var userStore = new UserStore<AuthorizedUser>(context);
             var userManager = new UserManager<AuthorizedUser>(userStore);
