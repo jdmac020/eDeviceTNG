@@ -94,7 +94,7 @@ namespace EDeviceClaims.Domain.Services
         {
             var openClaims = _getClaimInteractor.GetAllOpen();
 
-            // LINQ does this "foreach" action
+            // LINQ statement that combines a "results = new List<>" and "foreach openClaim" into one...
             return openClaims
                 .Select(claim => new ClaimDomainModel(claim))
                 .ToList();
