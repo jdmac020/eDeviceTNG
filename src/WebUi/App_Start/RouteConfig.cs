@@ -13,6 +13,7 @@ namespace WebUi
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
                 name: "Default",
@@ -23,8 +24,13 @@ namespace WebUi
             routes.MapRoute(
                 name: "LogOff",
                 url: "Account/LogOff/",
-                defaults: new { controller = "Account", action = "LogOff", }
+                defaults: new {area = "", controller = "Account", action = "LogOff" }
                 );
+            //routes.MapRoute(
+            //    "Area",
+            //    "",
+            //    new { area = "AreaZ", controller = "Default", action = "ActionY" }
+            //);
         }
     }
 }

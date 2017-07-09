@@ -13,7 +13,7 @@ using WebUi;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    
+    [RouteArea("")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -394,6 +394,7 @@ namespace EDeviceClaims.WebUi.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("LogOff")]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
