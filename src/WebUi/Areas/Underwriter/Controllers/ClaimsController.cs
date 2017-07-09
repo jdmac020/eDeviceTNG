@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using EDeviceClaims.Core;
@@ -21,6 +22,14 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
             var model = new ClaimsListViewModel(claims);
 
             return View("Index", model);
+        }
+
+        public ActionResult Details(Guid claimId)
+        {
+            var claimModel = _claimService.GetById(claimId);
+            var viewModel = new UnderwriterClaimViewModel(claimModel);
+
+            return View(viewModel);
         }
     }
 }

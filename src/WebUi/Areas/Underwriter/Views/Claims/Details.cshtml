@@ -1,14 +1,14 @@
 ﻿
 
-@model EDeviceClaims.WebUi.Models.DeviceViewModel
+@model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
     
 <h2 style="text-align: center;">@Model.Name Details</h2>
-@Html.Partial("_deviceDetailsTable", Model)
+@Html.Partial("_claimDetailsTable", Model)
 
 <div id="buttons">
-    @Html.Partial("_claimButton", Model)
+    @*@Html.Partial("_claimButton", Model)*@
 
-    @Html.ActionLink("Back to Devices", "Index", "Devices", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
+    @Html.ActionLink("Back to Open Claims", "Index", "Claims", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
 
 </div>
 
@@ -23,26 +23,27 @@
         align-content: center;
     }
 
-     table#deviceListTable {
+     table#claimListTable {
          margin: auto;
          width: 30%;
          background-color: #f1f1c1;
          text-align: center;
      }
 
-    table#deviceListTable tr:nth-child(even) {
+    table#claimListTable tr:nth-child(even) {
         background-color: #eee;
     }
 
-    table#deviceListTable tr:nth-child(odd) {
+    table#claimListTable tr:nth-child(odd) {
         background-color: #fff;
     }
 
-    table#deviceListTable th {
+    table#claimListTable th {
         color: black;
         background-color: gray;
         text-align: left;
     }
+
     table, th, td {
         border: 1px solid black;
         border-collapse: collapse;

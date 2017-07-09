@@ -1,0 +1,31 @@
+﻿@model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
+
+<div>
+    <table class="table" id="claimListTable">
+        <tr>
+            <th>@Html.Label("Claim ID")</th>
+            <td>@Model.Id</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("Policy")</th>
+            <td>@Model.PolicyId</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("Customer")</th>
+            <td>Placeholder</td>
+            @*<td>@Model.PolicyNumber</td>*@
+        </tr>
+        <tr>
+            <th>@Html.Label("Device")</th>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("Status")</th>
+            <td>@Model.Status</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("Started")</th>
+            <td>@Model.Start</td>
+        </tr>
+    </table>
+</div>

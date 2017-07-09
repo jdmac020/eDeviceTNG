@@ -11,8 +11,8 @@ namespace EDeviceClaims.Domain.Services
 
     public interface IClaimService
     {
-        ClaimDomainModel StartClaim(Guid policyId); //This is just Id in the video... // I like knowing whether I'm passing a policy or user or claim ID at a glance
-        ClaimDomainModel ViewClaim(Guid policyId); //This too
+        ClaimDomainModel StartClaim(Guid policyId);
+        ClaimDomainModel ViewClaim(Guid policyId);
         ClaimDomainModel GetById(Guid id);
 
         List<ClaimDomainModel> GetAllOpen();
@@ -32,12 +32,10 @@ namespace EDeviceClaims.Domain.Services
 
         private IGetClaimInteractor GetClaimInteractor
         {
-            get { return _getClaimInteractor ?? (_getClaimInteractor = new GetClaimInteractor()); } //Video 4b 18:00, named wrong //named correctly--we need both a CreateClaim and a GetClaim interactor in this class. in the video the getpolicy and getclaim interactors are collapsed and you only see the CreateClaim one, which was missing before I added it. 
+            get { return _getClaimInteractor ?? (_getClaimInteractor = new GetClaimInteractor()); } 
             set { _getClaimInteractor = value; }
         }
-
-        // This entire interactor was missing--the part that triggers the entire thing. The UI layer was reaching into the service and never triggering the rest of the process, because there was no CreateClaimInteractor wired up
-
+        
         private ICreateClaimInteractor _createClaimInteractor;
 
         private ICreateClaimInteractor CreateClaimInteractor
@@ -46,17 +44,15 @@ namespace EDeviceClaims.Domain.Services
             set { _createClaimInteractor = value; }
         }
 
-        // did a total overhaul on this, I don't think it matches the video
+        
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
 
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
-
-            // Check for existing claim
+            
             var existingClaimEntity = GetClaimInteractor.Execute(policyId);
-
-            // if there's an existing claim, return it. If not, create one.
+            
             if (existingClaimEntity != null)
             {
                 return new ClaimDomainModel(existingClaimEntity);
@@ -76,9 +72,7 @@ namespace EDeviceClaims.Domain.Services
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
 
             var existingClaim = GetClaimInteractor.Execute(policyId);
-
-            // returns new claim model regardless
-            // will eventually need to return existing claim data or error handle
+            
             return new ClaimDomainModel(existingClaim);
         }
 
@@ -93,10 +87,11 @@ namespace EDeviceClaims.Domain.Services
         public List<ClaimDomainModel> GetAllOpen()
         {
             var openClaims = GetClaimInteractor.GetAllOpen();
-
+            
             // LINQ statement that combines a "results = new List<>" and "foreach openClaim" into one...
             return openClaims
                 .Select(claim => new ClaimDomainModel(claim))
+                .OrderBy(c => c.WhenStarted)
                 .ToList();
         }
     }

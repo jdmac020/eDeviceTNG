@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Antlr.Runtime;
 
 namespace WebUi
 {
@@ -22,7 +23,7 @@ namespace WebUi
             routes.MapRoute(
                 name: "LogOff",
                 url: "Account/LogOff/",
-                defaults: new { controller = "Account", action = "LogOff" }
+                defaults: new { controller = "Account", action = "LogOff", }
                 );
         }
     }
