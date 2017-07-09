@@ -13,7 +13,7 @@ using WebUi;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    [Authorize(Roles = AppRoles.Admin)]
+    
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
