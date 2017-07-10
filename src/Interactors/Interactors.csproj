@@ -61,7 +61,7 @@
     <Compile Include="GetPolicyInteractor.cs" />
     <Compile Include="GetProfileInteractor.cs" />
     <Compile Include="GetUserInteractor.cs" />
-    <Compile Include="IGetClaimInteractor.cs" />
+    <Compile Include="GetClaimInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdatePolicyInteractor.cs" />
   </ItemGroup>

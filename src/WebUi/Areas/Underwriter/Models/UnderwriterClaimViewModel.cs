@@ -9,7 +9,8 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 
         public string Start { get; set; }
 
-        public string Name { get; set; }
+        public string DeviceName { get; set; }
+        public string CustomerName { get; set; }
 
         public Guid PolicyId { get; set; }
 
@@ -19,7 +20,8 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
         {
             Id = claim.Id;
             PolicyId = claim.Policy.Id;
-            Name = claim.Policy.DeviceName;
+            DeviceName = claim.Policy.DeviceName;
+            CustomerName = $"{claim.CustomerFirstName} {claim.CustomerLastName}";
             Start = $"{claim.WhenStarted.ToShortDateString()} {claim.WhenStarted.ToShortTimeString()}";
             Status = claim.Status.ToString();
         }

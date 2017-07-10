@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EDeviceClaims.Domain.Models;
+using EDeviceClaims.Entities;
 using EDeviceClaims.Interactors;
 
 namespace EDeviceClaims.Domain.Services
@@ -44,7 +45,14 @@ namespace EDeviceClaims.Domain.Services
             set { _createClaimInteractor = value; }
         }
 
-        
+        private IProfileService _profileService;
+
+        private IProfileService ProfileService
+        {
+            get { return _profileService ?? (_profileService = new ProfileService()); }
+            set { _profileService = value; }
+        }
+
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
@@ -73,26 +81,62 @@ namespace EDeviceClaims.Domain.Services
 
             var existingClaim = GetClaimInteractor.Execute(policyId);
             
-            return new ClaimDomainModel(existingClaim);
-        }
+            return GetCustomerNameForClaim(existingClaim);
 
+        }
+        
         public ClaimDomainModel GetById(Guid id)
         {
             var claim = GetClaimInteractor.Execute(id);
             if(claim == null) throw new ArgumentException("Claim does not exist");
 
-            return new ClaimDomainModel(claim);
+            return GetCustomerNameForClaim(claim);
         }
 
         public List<ClaimDomainModel> GetAllOpen()
         {
             var openClaims = GetClaimInteractor.GetAllOpen();
-            
-            // LINQ statement that combines a "results = new List<>" and "foreach openClaim" into one...
-            return openClaims
-                .Select(claim => new ClaimDomainModel(claim))
+
+            return GetCustomerNamesForClaims(openClaims)
                 .OrderBy(c => c.WhenStarted)
                 .ToList();
+
+            // LINQ statement that combines a "results = new List<>" and "foreach openClaim" into one...
+            //return openClaims
+            //    .Select(claim => new ClaimDomainModel(claim))
+            //    .OrderBy(c => c.WhenStarted)
+            //    .ToList();
+        }
+
+        protected ClaimDomainModel GetCustomerNameForClaim(ClaimEntity existingClaim)
+        {
+            var profile = ProfileService.GetProfileById(existingClaim.Policy.UserId);
+
+            var claimModel = new ClaimDomainModel(existingClaim);
+
+            claimModel.CustomerFirstName = profile.FirstName;
+            claimModel.CustomerLastName = profile.LastName;
+
+            return claimModel;
+        }
+
+        protected List<ClaimDomainModel> GetCustomerNamesForClaims(List<ClaimEntity> openClaims)
+        {
+            var claimModels = new List<ClaimDomainModel>();
+
+            foreach (var claimEntity in openClaims)
+            {
+                var claimModel = new ClaimDomainModel(claimEntity);
+
+                var profile = ProfileService.GetProfileById(claimEntity.Policy.UserId);
+
+                claimModel.CustomerFirstName = profile.FirstName;
+                claimModel.CustomerLastName = profile.LastName;
+
+                claimModels.Add(claimModel);
+            }
+
+            return claimModels;
         }
     }
 }

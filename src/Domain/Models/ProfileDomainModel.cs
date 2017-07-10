@@ -14,10 +14,12 @@ namespace EDeviceClaims.Domain.Models
             FirstName = user.FirstName;
             LastName = user.LastName;
             UserName = user.UserName;
+            Email = user.Email;
         }
         
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
+        public string Email { get; set; }
     }
 }

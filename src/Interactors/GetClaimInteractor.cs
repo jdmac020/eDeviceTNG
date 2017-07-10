@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EDeviceClaims.Entities;
 using EDeviceClaims.Repositories;
 
@@ -10,7 +7,8 @@ namespace EDeviceClaims.Interactors
 {
     public interface IGetClaimInteractor
     {
-        ClaimEntity GetClaimById(Guid policyId);
+        ClaimEntity Execute(Guid id);
+        List<ClaimEntity> GetAllOpen();
     }
 
     public class GetClaimInteractor : IGetClaimInteractor
@@ -23,11 +21,21 @@ namespace EDeviceClaims.Interactors
 
         private IClaimRepository _repo;
 
-        public ClaimEntity GetClaimById(Guid policyId)
+        public GetClaimInteractor() { }
+
+        public GetClaimInteractor(IClaimRepository claimRepo)
         {
-            //Save a new claim using the claim repository
-            
-            return Repo.GetByPolicyId(policyId);
+            _repo = claimRepo;
+        }
+
+        public ClaimEntity Execute(Guid id)
+        {
+            return Repo.GetById(id);
+        }
+
+        public List<ClaimEntity> GetAllOpen()
+        {
+            return Repo.GetAllOpen();
         }
     }
 }
