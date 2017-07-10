@@ -83,8 +83,7 @@ namespace EDeviceClaims.WebUi.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    // get user's name
-                    // cache user's name
+                    SetProfileCache(model.Email);
 
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -96,6 +95,14 @@ namespace EDeviceClaims.WebUi.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+        private void SetProfileCache(string email)
+        {
+            // get user's name
+            var user = UserManager.FindByEmail(email);
+            var profile = _profileService.GetProfileById(user.Id);
+            // cache user's name
         }
 
         //
@@ -171,6 +178,7 @@ namespace EDeviceClaims.WebUi.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    SetProfileCache(model.Email);
 
                     return RedirectToAction("Index", "Home");
                 }
