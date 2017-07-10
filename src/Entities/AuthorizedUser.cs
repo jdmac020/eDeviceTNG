@@ -8,16 +8,19 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EDeviceClaims.Entities
 {
-  public class AuthorizedUser : IdentityUser, IEntity<string>
-  {
-    public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AuthorizedUser> manager)
+    public class AuthorizedUser : IdentityUser, IEntity<string>
     {
-      // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-      var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-      // Add custom user claims here
-      return userIdentity;
-    }
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AuthorizedUser> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
 
-    public virtual ICollection<Policy> UserPolicies { get; set; }
-  }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public virtual ICollection<Policy> UserPolicies { get; set; }
+    }
 }
