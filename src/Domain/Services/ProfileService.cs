@@ -25,9 +25,9 @@ namespace EDeviceClaims.Domain.Services
 
         public ProfileDomainModel GetProfileById(string id)
         {
-            var user = GetProfileInteractor.GetProfileById(id);
+            var profile = GetProfileInteractor.GetProfileById(id);
 
-            return new ProfileDomainModel(user);
+            return new ProfileDomainModel(profile);
         }
     }
 }

@@ -14,11 +14,11 @@ namespace EDeviceClaims.Interactors
     }
     public class GetProfileInteractor : IGetProfileInteractor
     {
-        private IUserRepository _repo;
+        private IProfileRepository _repo;
 
-        private IUserRepository Repo
+        private IProfileRepository Repo
         {
-            get { return _repo ?? (_repo = new UserRepository()); }
+            get { return _repo ?? (_repo = new ProfileRepository()); }
             set { _repo = value; }
         }
 
