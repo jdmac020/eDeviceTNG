@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EDeviceClaims.Entities;
+using EDeviceClaims.Core;
 
 namespace EDeviceClaims.Domain.Models
 {
     public class ProfileDomainModel
     {
-        public ProfileDomainModel(AuthorizedUser user)
+        public ProfileDomainModel(IProfile user)
         {
-            Id = user.Id;
             FirstName = user.FirstName;
             LastName = user.LastName;
-            UserName = user.Email;
+            UserName = user.UserName;
         }
-
-        public string Id { get; set; }
+        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }

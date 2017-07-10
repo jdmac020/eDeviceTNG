@@ -15,17 +15,17 @@ namespace EDeviceClaims.Domain.Services
 
     public class ProfileService : IProfileService
     {
-        private IGetUserInteractor _getUserInteractor;
+        private IGetProfileInteractor _getProfileInteractor;
 
-        private IGetUserInteractor GetUserInteractor
+        private IGetProfileInteractor GetProfileInteractor
         {
-            get { return _getUserInteractor ?? (_getUserInteractor = new GetUserInteractor()); }
-            set { _getUserInteractor = value; }
+            get { return _getProfileInteractor ?? (_getProfileInteractor = new GetProfileInteractor()); }
+            set { _getProfileInteractor = value; }
         } 
 
         public ProfileDomainModel GetProfileById(string id)
         {
-            var user = GetUserInteractor.GetById(id);
+            var user = GetProfileInteractor.GetProfileById(id);
 
             return new ProfileDomainModel(user);
         }

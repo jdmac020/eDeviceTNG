@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EDeviceClaims.Entities
 {
-    public class AuthorizedUser : IdentityUser, IEntity<string>
+    public class AuthorizedUser : IdentityUser, IEntity<string>, IProfile
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AuthorizedUser> manager)
         {

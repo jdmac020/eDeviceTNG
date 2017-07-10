@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EDeviceClaims.Core;
-using EDeviceClaims.Entities;
 using EDeviceClaims.Repositories;
 
 namespace EDeviceClaims.Interactors
 {
-    public interface IGetUserInteractor
+    public interface IGetProfileInteractor
     {
-        AuthorizedUser GetById(string userId);
+        IProfile GetProfileById(string id);
     }
-    public class GetUserInteractor: IGetUserInteractor
+    public class GetProfileInteractor : IGetProfileInteractor
     {
         private IUserRepository _repo;
 
@@ -22,16 +21,11 @@ namespace EDeviceClaims.Interactors
             get { return _repo ?? (_repo = new UserRepository()); }
             set { _repo = value; }
         }
-       public GetUserInteractor() { }
 
-        public GetUserInteractor(IUserRepository userRepo)
-        {
-            _repo = userRepo;
-        }
 
-        public AuthorizedUser GetById(string userId)
+        public IProfile GetProfileById(string id)
         {
-            return Repo.GetById(userId);
+            return Repo.GetById(id);
         }
     }
 }
