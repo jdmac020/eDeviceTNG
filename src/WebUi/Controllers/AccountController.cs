@@ -103,6 +103,8 @@ namespace EDeviceClaims.WebUi.Controllers
             var user = UserManager.FindByEmail(email);
             var profile = _profileService.GetProfileById(user.Id);
             // cache user's name
+            Session[UiConstants.UserFirstNameSessionKey] = profile.FirstName;
+            Session[UiConstants.UserLastNameSessionKey] = profile.LastName;
         }
 
         //
