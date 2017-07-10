@@ -19,6 +19,7 @@ namespace EDeviceClaims.WebUi.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IPolicyService _policyService = new PolicyService();
+        private IProfileService _profileService = new ProfileService();
 
         public AccountController()
         {
@@ -82,6 +83,9 @@ namespace EDeviceClaims.WebUi.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    // get user's name
+                    // cache user's name
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

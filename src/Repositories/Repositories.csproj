@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201707081747190_addedClaimStatus.Designer.cs">
       <DependentUpon>201707081747190_addedClaimStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707101400228_addUserFirstNameAndLastName.cs" />
+    <Compile Include="Migrations\201707101400228_addUserFirstNameAndLastName.Designer.cs">
+      <DependentUpon>201707101400228_addUserFirstNameAndLastName.cs</DependentUpon>
+    </Compile>
     <Compile Include="PolicyRepository.cs" />
     <Compile Include="EfUnitOfWork.cs" />
     <Compile Include="Contexts\EDeviceClaimsContext.cs" />
@@ -123,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707081747190_addedClaimStatus.resx">
       <DependentUpon>201707081747190_addedClaimStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707101400228_addUserFirstNameAndLastName.resx">
+      <DependentUpon>201707101400228_addUserFirstNameAndLastName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
