@@ -2,13 +2,14 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-  [Authorize]
-  public class DeviceController : AppController
+  [Authorize(Roles = AppRoles.PolicyHolder)]
+  public class DevicesController : AppController
   {
     private IPolicyService _policyService = new PolicyService();
 

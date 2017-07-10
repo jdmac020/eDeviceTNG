@@ -8,6 +8,7 @@ using EDeviceClaims.Entities;
 
 namespace EDeviceClaims.Repositories
 {
+
     public interface IUserRepository : IEfRepository<AuthorizedUser,string>
     {
         

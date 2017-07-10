@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.Entities;
 using EDeviceClaims.WebUi.Models;
@@ -12,12 +13,13 @@ using WebUi;
 
 namespace EDeviceClaims.WebUi.Controllers
 {
-    [Authorize]
+    [RouteArea("")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IPolicyService _policyService = new PolicyService();
+        private IProfileService _profileService = new ProfileService();
 
         public AccountController()
         {
@@ -81,6 +83,8 @@ namespace EDeviceClaims.WebUi.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    SetProfileCache(model.Email);
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -91,6 +95,16 @@ namespace EDeviceClaims.WebUi.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+        private void SetProfileCache(string email)
+        {
+            // get user's name
+            var user = UserManager.FindByEmail(email);
+            var profile = _profileService.GetProfileById(user.Id);
+            // cache user's name
+            Session[UiConstants.UserFirstNameSessionKey] = profile.FirstName;
+            Session[UiConstants.UserLastNameSessionKey] = profile.LastName;
         }
 
         //
@@ -166,6 +180,7 @@ namespace EDeviceClaims.WebUi.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    SetProfileCache(model.Email);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -393,9 +408,11 @@ namespace EDeviceClaims.WebUi.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("LogOff")]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 

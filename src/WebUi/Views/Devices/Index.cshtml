@@ -3,9 +3,7 @@
 <h1 align="center">Your Insured Devices</h1>
 
 
-<div>
-
-    <table class="table" id="deviceListTable">
+<table class="table" id="deviceListTable">
         <tr>
             <th>@Html.Label("Device")</th>
             <th>@Html.Label("Serial Number")</th>
@@ -19,13 +17,11 @@
                 <td>@Html.DisplayFor(modelItem => device.Name)</td>
                 <td>@Html.DisplayFor(modelItem => device.SerialNumber)</td>
                 <td>@Html.DisplayFor(modelItem => device.PolicyNumber)</td>
-                <td>@Html.ActionLink("View Details", "Details", "Device", routeValues: new { policyId = device.PolicyId }, htmlAttributes: new { Class = "btn btn-primary btn-lg" }) </td>
+                <td>@Html.ActionLink("View Details", "Details", "Devices", routeValues: new { policyId = device.PolicyId }, htmlAttributes: new { Class = "btn btn-primary btn-lg" }) </td>
 
             </tr>
         }
     </table>
-
-</div>    
 
 <style>
     
@@ -36,10 +32,6 @@
     table#deviceListTable tr:nth-child(odd) { background-color: #fff; }
 
     table#deviceListTable th { color: black; background-color: gray; text-align: center; }
-
-    table, th, td { border: 1px solid black; }
-
-    table, th, td { border: 1px solid black; border-collapse: collapse; }
 
     table, th, td { border: 1px solid black; border-collapse: collapse; }
 

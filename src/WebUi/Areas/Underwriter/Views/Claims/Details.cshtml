@@ -1,0 +1,61 @@
+﻿
+
+@model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
+    
+<h2 style="text-align: center;">@Model.DeviceName Details</h2>
+@Html.Partial("_claimDetailsTable", Model)
+
+<div id="buttons">
+    @*@Html.Partial("_claimButton", Model)*@
+
+    @Html.ActionLink("Back to Open Claims", "Index", "Claims", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
+
+</div>
+
+<style>
+    
+    #buttons {
+        text-align: center;
+        padding-top: 10%;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
+     table#claimListTable {
+         margin: auto;
+         width: 30%;
+         background-color: #f1f1c1;
+         text-align: center;
+     }
+
+    table#claimListTable tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    table#claimListTable tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    table#claimListTable th {
+        color: black;
+        background-color: gray;
+        text-align: left;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+</style>
+
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/device_details.js"></script>
+}

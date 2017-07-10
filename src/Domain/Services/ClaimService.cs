@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EDeviceClaims.Domain.Models;
+using EDeviceClaims.Entities;
 using EDeviceClaims.Interactors;
 
 namespace EDeviceClaims.Domain.Services
@@ -11,9 +12,11 @@ namespace EDeviceClaims.Domain.Services
 
     public interface IClaimService
     {
-        ClaimDomainModel StartClaim(Guid policyId); //This is just Id in the video... // I like knowing whether I'm passing a policy or user or claim ID at a glance
-        ClaimDomainModel ViewClaim(Guid policyId); //This too
+        ClaimDomainModel StartClaim(Guid policyId);
+        ClaimDomainModel ViewClaim(Guid policyId);
         ClaimDomainModel GetById(Guid id);
+
+        List<ClaimDomainModel> GetAllOpen();
     }
 
     public class ClaimService : IClaimService
@@ -30,12 +33,10 @@ namespace EDeviceClaims.Domain.Services
 
         private IGetClaimInteractor GetClaimInteractor
         {
-            get { return _getClaimInteractor ?? (_getClaimInteractor = new GetClaimInteractor()); } //Video 4b 18:00, named wrong //named correctly--we need both a CreateClaim and a GetClaim interactor in this class. in the video the getpolicy and getclaim interactors are collapsed and you only see the CreateClaim one, which was missing before I added it. 
+            get { return _getClaimInteractor ?? (_getClaimInteractor = new GetClaimInteractor()); } 
             set { _getClaimInteractor = value; }
         }
-
-        // This entire interactor was missing--the part that triggers the entire thing. The UI layer was reaching into the service and never triggering the rest of the process, because there was no CreateClaimInteractor wired up
-
+        
         private ICreateClaimInteractor _createClaimInteractor;
 
         private ICreateClaimInteractor CreateClaimInteractor
@@ -44,17 +45,22 @@ namespace EDeviceClaims.Domain.Services
             set { _createClaimInteractor = value; }
         }
 
-        // did a total overhaul on this, I don't think it matches the video
+        private IProfileService _profileService;
+
+        private IProfileService ProfileService
+        {
+            get { return _profileService ?? (_profileService = new ProfileService()); }
+            set { _profileService = value; }
+        }
+
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
 
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
-
-            // Check for existing claim
+            
             var existingClaimEntity = GetClaimInteractor.Execute(policyId);
-
-            // if there's an existing claim, return it. If not, create one.
+            
             if (existingClaimEntity != null)
             {
                 return new ClaimDomainModel(existingClaimEntity);
@@ -74,18 +80,63 @@ namespace EDeviceClaims.Domain.Services
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
 
             var existingClaim = GetClaimInteractor.Execute(policyId);
+            
+            return GetCustomerNameForClaim(existingClaim);
 
-            // returns new claim model regardless
-            // will eventually need to return existing claim data or error handle
-            return new ClaimDomainModel(existingClaim);
         }
-
+        
         public ClaimDomainModel GetById(Guid id)
         {
             var claim = GetClaimInteractor.Execute(id);
             if(claim == null) throw new ArgumentException("Claim does not exist");
 
-            return new ClaimDomainModel(claim);
+            return GetCustomerNameForClaim(claim);
+        }
+
+        public List<ClaimDomainModel> GetAllOpen()
+        {
+            var openClaims = GetClaimInteractor.GetAllOpen();
+
+            return GetCustomerNamesForClaims(openClaims)
+                .OrderBy(c => c.WhenStarted)
+                .ToList();
+
+            // LINQ statement that combines a "results = new List<>" and "foreach openClaim" into one...
+            //return openClaims
+            //    .Select(claim => new ClaimDomainModel(claim))
+            //    .OrderBy(c => c.WhenStarted)
+            //    .ToList();
+        }
+
+        protected ClaimDomainModel GetCustomerNameForClaim(ClaimEntity existingClaim)
+        {
+            var profile = ProfileService.GetProfileById(existingClaim.Policy.UserId);
+
+            var claimModel = new ClaimDomainModel(existingClaim);
+
+            claimModel.CustomerFirstName = profile.FirstName;
+            claimModel.CustomerLastName = profile.LastName;
+
+            return claimModel;
+        }
+
+        protected List<ClaimDomainModel> GetCustomerNamesForClaims(List<ClaimEntity> openClaims)
+        {
+            var claimModels = new List<ClaimDomainModel>();
+
+            foreach (var claimEntity in openClaims)
+            {
+                var claimModel = new ClaimDomainModel(claimEntity);
+
+                var profile = ProfileService.GetProfileById(claimEntity.Policy.UserId);
+
+                claimModel.CustomerFirstName = profile.FirstName;
+                claimModel.CustomerLastName = profile.LastName;
+
+                claimModels.Add(claimModel);
+            }
+
+            return claimModels;
         }
     }
 }

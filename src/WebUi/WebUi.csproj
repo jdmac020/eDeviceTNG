@@ -167,10 +167,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Underwriter\Controllers\ClaimsController.cs" />
+    <Compile Include="Areas\Underwriter\Controllers\UnderwriterAppController.cs" />
+    <Compile Include="Areas\Underwriter\Models\ClaimsListViewModel.cs" />
+    <Compile Include="Areas\Underwriter\Models\UnderwriterClaimViewModel.cs" />
+    <Compile Include="Areas\Underwriter\UnderwriterAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\ClaimController.cs" />
-    <Compile Include="Controllers\DeviceController.cs" />
+    <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -182,6 +187,7 @@
     <Compile Include="Models\DeviceViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NoteViewModel.cs" />
+    <Compile Include="Models\UiConstants.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -286,6 +292,11 @@
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="Areas\Underwriter\Views\web.config" />
+    <Content Include="Areas\Underwriter\Views\Claims\Index.cshtml" />
+    <Content Include="Areas\Underwriter\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\Details.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\_claimDetailsTable.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\device_details.js" />
     <Content Include="Scripts\indexJavaScript.js" />
@@ -331,18 +342,19 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Device\Index.cshtml" />
+    <Content Include="Views\Devices\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Device\Details.cshtml" />
+    <Content Include="Views\Devices\Details.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Claim\StartClaim.cshtml" />
     <Content Include="Views\Claim\ViewClaim.cshtml" />
-    <Content Include="Views\Device\_claimButton.cshtml" />
-    <Content Include="Views\Device\_deviceDetailsTable.cshtml" />
+    <Content Include="Views\Devices\_claimButton.cshtml" />
+    <Content Include="Views\Devices\_deviceDetailsTable.cshtml" />
     <None Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Underwriter\Views\Shared\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>

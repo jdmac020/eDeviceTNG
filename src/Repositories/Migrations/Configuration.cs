@@ -6,6 +6,7 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using EDeviceClaims.Core;
 
 namespace EDeviceClaims.Repositories.Migrations
 {
@@ -32,12 +33,16 @@ namespace EDeviceClaims.Repositories.Migrations
             //    );
             //
 
-            //var roleStore = new RoleStore<IdentityRole>(context);
-            //var roleManager = new RoleManager<IdentityRole>(roleStore);
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
 
-            var policyHolder = CreateUser("user@personal.com", "user@personal.com", context);
-            CreateUser("admin@company.com", "admin@company.com", context);
-            CreateUser("callcenter@company.com", "callcenter@company.com", context);
+            roleManager.Create(new IdentityRole { Name = AppRoles.Admin });
+            roleManager.Create(new IdentityRole { Name = AppRoles.Underwriter });
+            roleManager.Create(new IdentityRole { Name = AppRoles.PolicyHolder });
+
+            var policyHolder = CreateUser("user@personal.com", "user@personal.com", "Policy", "Holder", context);
+            CreateUser("admin@company.com", "admin@company.com", "Admin", "Guy", context, AppRoles.Admin);
+            CreateUser("callcenter@company.com", "callcenter@company.com", "Under", "Writer", context, AppRoles.Underwriter);
 
             var p1 = new Policy
             {
@@ -87,19 +92,27 @@ namespace EDeviceClaims.Repositories.Migrations
             //context.SaveChanges();
         }
 
-        public AuthorizedUser CreateUser(string userName, string email, EDeviceClaimsContext context)
+        public AuthorizedUser CreateUser(string userName, string email, string firstName, string lastName, EDeviceClaimsContext context, string role = AppRoles.PolicyHolder)
         {
             var userStore = new UserStore<AuthorizedUser>(context);
             var userManager = new UserManager<AuthorizedUser>(userStore);
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
 
             var user = userManager.FindByEmail(email);
 
             if (user != null) return user;
 
-            user = new AuthorizedUser { UserName = userName, Email = email };
+            user = new AuthorizedUser
+            {
+                UserName = userName,
+                Email = email,
+                FirstName = firstName,
+                LastName = lastName
+            };
             userManager.Create(user, "password");
-            //roleManager.Create(new IdentityRole { Name = "admin" });
-            //userManager.AddToRole(user.Id, "admin");
+            roleManager.Create(new IdentityRole { Name = role });
+            userManager.AddToRole(user.Id, role);
             return user;
         }
     }
