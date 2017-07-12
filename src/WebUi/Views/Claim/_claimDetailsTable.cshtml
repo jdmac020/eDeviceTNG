@@ -1,0 +1,18 @@
+﻿@model EDeviceClaims.WebUi.Models.ClaimViewModel
+
+<div>
+    <table class="table" id="claimListTable">
+        <tr>
+            <th>@Html.Label("Policy")</th>
+            <td>@Model.PolicyNumber</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("Open Since")</th>
+            <td>@Model.Opened</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("Status")</th>
+            <td>@Model.Status</td>
+        </tr>
+    </table>
+</div>

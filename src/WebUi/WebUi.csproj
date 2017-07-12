@@ -350,6 +350,7 @@
     <Content Include="Views\Claim\ViewClaim.cshtml" />
     <Content Include="Views\Devices\_claimButton.cshtml" />
     <Content Include="Views\Devices\_deviceDetailsTable.cshtml" />
+    <Content Include="Views\Claim\_claimDetailsTable.cshtml" />
     <None Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
