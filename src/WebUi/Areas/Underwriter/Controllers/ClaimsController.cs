@@ -41,9 +41,9 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
             return View(viewModel);
         }
 
-        private List<ClaimStatus> GetStatusForDropDown()
+        private List<ClaimStatusDisplay> GetStatusForDropDown()
         {
-            var statuses = new ClaimStatus();
+            var statuses = new ClaimStatusDisplay();
 
             return statuses.GetList();
         }

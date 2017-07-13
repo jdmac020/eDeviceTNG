@@ -22,7 +22,8 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 
         public List<NoteViewModel> Notes { get; set; }
 
-        public IEnumerable<ClaimStatus> Statuses { get; set; }
+        public IEnumerable<ClaimStatusDisplay> Statuses { get; set; }
+        public ClaimStatus NewStatus { get; set; }
 
         public UnderwriterClaimViewModel(ClaimDomainModel claim)
         {

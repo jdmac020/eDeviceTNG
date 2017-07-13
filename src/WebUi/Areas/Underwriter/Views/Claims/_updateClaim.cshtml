@@ -1,6 +1,6 @@
 ﻿@using EDeviceClaims.Core
 @model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
 
-<div class="centerElement">
-    @Html.DropDownListFor(m => m.Status, new SelectList(Model.Statuses),"Value", "Text")  
+<div>
+    @Html.DropDownListFor(m => m.NewStatus, new SelectList(Model.Statuses,"Value", "Text"),"Select A Thingy")
 </div>
