@@ -1,7 +1,12 @@
 ﻿@model EDeviceClaims.WebUi.Models.ClaimViewModel
     
-<h2 style="text-align: center;">@Model.Id Details</h2>
-@Html.Partial("_claimDetailsTable", Model)
+<h2 class="centerElement">Claim: @Model.Id</h2>
+
+<div>
+    @Html.Partial("_claimDetailsTable", Model)
+    @Html.Partial("_claimNotesTable", Model)
+</div>
+
 
 <div id="buttons">
     @*@Html.Partial("_claimButton", Model)*@
@@ -12,6 +17,23 @@
 
 <style>
     
+    .centerElement {
+        text-align: center;
+        padding-top: 2%;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
+    #notesPlaceHolder {
+        text-align: center;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
     #buttons {
         text-align: center;
         padding-top: 10%;

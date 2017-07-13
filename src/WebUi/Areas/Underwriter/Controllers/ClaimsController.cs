@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,6 +31,21 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
             var viewModel = new UnderwriterClaimViewModel(claimModel);
 
             return View(viewModel);
+        }
+
+        public ActionResult Edit(Guid claimId)
+        {
+            var claimModel = _claimService.GetById(claimId);
+            var viewModel = new UnderwriterClaimViewModel(claimModel) {Statuses = GetStatusForDropDown()};
+            
+            return View(viewModel);
+        }
+
+        private List<ClaimStatus> GetStatusForDropDown()
+        {
+            var statuses = new ClaimStatus();
+
+            return statuses.GetList();
         }
     }
 }

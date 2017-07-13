@@ -32,7 +32,7 @@ namespace EDeviceClaims.Repositories
 
         public List<ClaimEntity> GetAllOpen()
         {
-            return ObjectSet.Where(c => c.Status == ClaimStatus.Open)
+            return ObjectSet.Where(c => c.Status == ClaimStatus.Status.Open)
                 .Include(c => c.Policy)
                 .ToList();
         }

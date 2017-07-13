@@ -1,7 +1,13 @@
 ﻿@model EDeviceClaims.WebUi.Models.ClaimViewModel
 
+<h3 class="centerElement">Details</h3>
+
 <div>
     <table class="table" id="claimListTable">
+        <tr>
+            <th>@Html.Label("Device")</th>
+            <td>@Model.DeviceName</td>
+        </tr>
         <tr>
             <th>@Html.Label("Policy")</th>
             <td>@Model.PolicyNumber</td>
