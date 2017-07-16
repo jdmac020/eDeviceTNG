@@ -55,6 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201707161553035_addedStatusEntity.cs" />
+    <Compile Include="Migrations\201707161553035_addedStatusEntity.Designer.cs">
+      <DependentUpon>201707161553035_addedStatusEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatusRepository.cs" />
     <Compile Include="EDeviceClaimsUnitOfWork.cs" />
     <Compile Include="ClaimRepository.cs" />
     <Compile Include="Migrations\201509041738522_updatedPolicyFieldLengths.cs" />
@@ -138,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707102107169_removedUserFromPolicy.resx">
       <DependentUpon>201707102107169_removedUserFromPolicy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707161553035_addedStatusEntity.resx">
+      <DependentUpon>201707161553035_addedStatusEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

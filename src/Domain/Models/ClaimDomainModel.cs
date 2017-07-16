@@ -11,7 +11,7 @@ namespace EDeviceClaims.Domain.Models
         public string CustomerLastName { get; set; }
         public DateTime WhenStarted { get; set; }
         public PolicyDomainModel Policy { get; set; }
-        public ClaimStatus Status { get; set; }
+        public StatusEntity Status { get; set; }
 
         public ClaimDomainModel(ClaimEntity claim)
         {

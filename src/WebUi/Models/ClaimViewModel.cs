@@ -5,6 +5,7 @@ using System.Web;
 using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Models;
 using EDeviceClaims.Domain.Services;
+using EDeviceClaims.Entities;
 
 namespace EDeviceClaims.WebUi.Models
 {
@@ -15,7 +16,7 @@ namespace EDeviceClaims.WebUi.Models
         public string DeviceName { get; set; }
         public string SerialNumber { get; set; }
         public string Opened { get; set; }
-        public ClaimStatus Status { get; set; }
+        public StatusEntity Status { get; set; }
         public List<NoteViewModel> Notes { get; set; } = new List<NoteViewModel>();
         
         public ClaimViewModel(ClaimDomainModel domainModel)
