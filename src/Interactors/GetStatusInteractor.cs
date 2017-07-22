@@ -9,6 +9,7 @@ namespace EDeviceClaims.Interactors
     {
         StatusEntity ExecuteForId(Guid id);
         IList<StatusEntity> ExecuteForAll();
+        StatusEntity ExecuteForName(string name);
     }
 
     public class GetStatusInteractor : IGetStatusInteractor
@@ -35,6 +36,11 @@ namespace EDeviceClaims.Interactors
         public IList<StatusEntity> ExecuteForAll()
         {
             return Repo.GetAll();
+        }
+
+        public StatusEntity ExecuteForName(string name)
+        {
+            return Repo.GetByName(name);
         }
     }
 }

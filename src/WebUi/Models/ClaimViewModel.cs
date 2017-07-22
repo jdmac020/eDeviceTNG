@@ -16,14 +16,14 @@ namespace EDeviceClaims.WebUi.Models
         public string DeviceName { get; set; }
         public string SerialNumber { get; set; }
         public string Opened { get; set; }
-        public StatusEntity Status { get; set; }
+        public ClaimStatusViewModel Status { get; set; }
         public List<NoteViewModel> Notes { get; set; } = new List<NoteViewModel>();
         
         public ClaimViewModel(ClaimDomainModel domainModel)
         {
             Id = domainModel.Id;
             Opened = $"{domainModel.WhenStarted.ToShortDateString()}";
-            Status = domainModel.Status;
+            Status = new ClaimStatusViewModel(domainModel.Status);
 
             SetPolicyProperties(domainModel.Policy);
         }

@@ -12,10 +12,12 @@ namespace EDeviceClaims.WebUi.Controllers
   public class DevicesController : AppController
   {
     private IPolicyService _policyService = new PolicyService();
+        private IProfileService _profileService = new ProfileService();
 
     public ActionResult Index()
     {
       var domainModel = _policyService.GetByUserId(CurrentUserId);
+
       var model = new DeviceListViewModel(domainModel);
 
       return View(model);

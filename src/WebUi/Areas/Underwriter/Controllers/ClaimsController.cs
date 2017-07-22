@@ -7,6 +7,7 @@ using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.WebUi.Areas.Underwriter.Models;
 using EDeviceClaims.WebUi.Controllers;
+using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
 {
@@ -14,6 +15,7 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
     {
         private IPolicyService _policyService = new PolicyService();
         private IClaimService _claimService = new ClaimService();
+        private IStatusService _statusService = new StatusService();
 
         // GET: Underwriter/Device
         public ActionResult Index()
@@ -36,16 +38,22 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
         public ActionResult Edit(Guid claimId)
         {
             var claimModel = _claimService.GetById(claimId);
-            var viewModel = new UnderwriterClaimViewModel(claimModel) {Statuses = GetStatusForDropDown()};
+            var viewModel = new UnderwriterClaimViewModel(claimModel) {Statuses = GetStatusDropDownList()};
             
             return View(viewModel);
         }
 
-        private List<ClaimStatusDisplay> GetStatusForDropDown()
+        private IEnumerable<ClaimStatusViewModel> GetStatusDropDownList()
         {
-            var statuses = new ClaimStatusDisplay();
+            var domainModels = _statusService.GetAll();
+            var viewModels = new List<ClaimStatusViewModel>();
 
-            return statuses.GetList();
+            foreach (var domainModel in domainModels)
+            {
+                viewModels.Add(new ClaimStatusViewModel(domainModel));
+            }
+
+            return viewModels;
         }
     }
 }

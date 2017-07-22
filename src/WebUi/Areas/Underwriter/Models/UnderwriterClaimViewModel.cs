@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Models;
-using EDeviceClaims.Entities;
 using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 {
     public class UnderwriterClaimViewModel
     {
-        public string Status { get; set; }
+        public ClaimStatusViewModel Status { get; set; }
 
         public string Start { get; set; }
 
@@ -23,8 +22,8 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 
         public List<NoteViewModel> Notes { get; set; }
 
-        public IEnumerable<ClaimStatusDisplay> Statuses { get; set; }
-        public StatusEntity NewStatus { get; set; }
+        public IEnumerable<ClaimStatusViewModel> Statuses { get; set; }
+        public ClaimStatusViewModel NewStatus { get; set; }
 
         public UnderwriterClaimViewModel(ClaimDomainModel claim)
         {
@@ -33,7 +32,7 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
             DeviceName = claim.Policy.DeviceName;
             PolicyHolderName = $"{claim.CustomerFirstName} {claim.CustomerLastName}";
             Start = $"{claim.WhenStarted.ToShortDateString()} {claim.WhenStarted.ToShortTimeString()}";
-            Status = claim.Status.ToString();
+            Status = new ClaimStatusViewModel(claim.Status);
             Notes = new List<NoteViewModel>();
             //InitializeNotes();
         }
