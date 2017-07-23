@@ -13,7 +13,7 @@ namespace EDeviceClaims.Repositories.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201707161553035_addedStatusEntity"; }
+            get { return "201707231805113_addedStatusEntity"; }
         }
         
         string IMigrationMetadata.Source

@@ -31,7 +31,7 @@ namespace EDeviceClaims.Repositories
 
         public ICollection<Policy> GetByUserId(string userId)
         {
-            return ObjectSet.Where(p => p.UserId == userId)
+            return ObjectSet.Where(p => p.UserName == userId)
                                     .Include( c => c.Claims)
                                     .ToList();
         }

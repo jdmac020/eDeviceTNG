@@ -123,7 +123,7 @@ namespace EDeviceClaims.Domain.Services
 
         protected ClaimDomainModel GetCustomerNameForClaim(ClaimEntity existingClaim)
         {
-            var profile = ProfileService.GetProfileById(existingClaim.Policy.UserId);
+            var profile = ProfileService.GetProfileById(existingClaim.Policy.UserName);
 
             var claimModel = new ClaimDomainModel(existingClaim);
 
@@ -141,7 +141,7 @@ namespace EDeviceClaims.Domain.Services
             {
                 var claimModel = new ClaimDomainModel(claimEntity);
 
-                var profile = ProfileService.GetProfileById(claimEntity.Policy.UserId);
+                var profile = ProfileService.GetProfileById(claimEntity.Policy.UserName);
 
                 claimModel.CustomerFirstName = profile.FirstName;
                 claimModel.CustomerLastName = profile.LastName;
