@@ -13,7 +13,6 @@ namespace EDeviceClaims.Domain.Services
     public interface IStatusService
     {
         StatusDomainModel GetById(Guid id);
-        StatusDomainModel GetByName(string name);
         List<StatusDomainModel> GetAll();
     }
 
@@ -31,14 +30,6 @@ namespace EDeviceClaims.Domain.Services
         {
             var status = GetStatusInteractor.ExecuteForId(id);
             if(status == null) throw new ArgumentException("Status does not exist");
-
-            return new StatusDomainModel(status);
-        }
-
-        public StatusDomainModel GetByName(string name)
-        {
-            var status = GetStatusInteractor.ExecuteForName(name);
-            if (status == null) throw new ArgumentException("Status does not exist");
 
             return new StatusDomainModel(status);
         }

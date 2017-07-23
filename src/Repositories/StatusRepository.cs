@@ -12,7 +12,6 @@ namespace EDeviceClaims.Repositories
     public interface IStatusRepository : IEfRepository<StatusEntity, Guid>
     {
         new StatusEntity GetById(Guid id);
-        StatusEntity GetByName(string name);
     }
 
     public class StatusRepository : EfRepository<StatusEntity, Guid>, IStatusRepository
@@ -31,10 +30,5 @@ namespace EDeviceClaims.Repositories
                 .FirstOrDefault(c => c.Id == id);
         }
 
-        public StatusEntity GetByName(string name)
-        {
-            return ObjectSet
-                .FirstOrDefault(c => c.Name == name);
-        }
     }
 }

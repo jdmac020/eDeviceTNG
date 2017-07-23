@@ -44,11 +44,7 @@ namespace EDeviceClaims.WebUi.Models
 
             if (claimsList.Any())
             {
-                if (claimsList.First().Status.Name == "Open")
-                {
-                    return claimsList.First();
-                }
-                return null;
+                return claimsList.First();
             }
             else
             {
