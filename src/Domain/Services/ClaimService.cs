@@ -53,18 +53,18 @@ namespace EDeviceClaims.Domain.Services
             set { _profileService = value; }
         }
 
-        private IStatusService _statusService;
+        private IGetStatusInteractor _getStatusInteractor;
 
-        private IStatusService StatusService
+        private IGetStatusInteractor GetStatusInteractor
         {
-            get { return _statusService ?? (_statusService = new StatusService()); }
-            set { _statusService = value; }
+            get { return _getStatusInteractor ?? (_getStatusInteractor = new GetStatusInteractor()); }
+            set { _getStatusInteractor = value; }
         }
 
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
-            var initialStatus = StatusService.GetByName("Open");
+            var initialStatus = GetStatusInteractor.ExecuteForName("Open");
 
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
             
@@ -76,10 +76,10 @@ namespace EDeviceClaims.Domain.Services
             }
             else
             {
-                var newClaimEntity = CreateClaimInteractor.Excute(policyId);
+                var newClaimEntity = CreateClaimInteractor.Execute(policyId);
 
-                var newClaimModel = new ClaimDomainModel(newClaimEntity);
-                newClaimModel.Status = initialStatus;
+                newClaimEntity.Status = initialStatus;
+                newClaimEntity.Policy = policy;
 
                 return new ClaimDomainModel(newClaimEntity);
             }

@@ -11,30 +11,39 @@ namespace EDeviceClaims.Interactors
 {
     public interface ICreateClaimInteractor
     {
-        ClaimEntity Excute(Guid id);
+        ClaimEntity Execute(Guid id);
     }
 
     public class CreateClaimInteractor : ICreateClaimInteractor
     {
-        private IClaimRepository Repo {
-            get { return _repo ?? (_repo = new ClaimRepository()); }
-            set { _repo = value; }
+        private IClaimRepository _claimRepo;
+        private IClaimRepository ClaimRepo {
+            get { return _claimRepo ?? (_claimRepo = new ClaimRepository()); }
+            set { _claimRepo = value; }
         }
 
-        private IClaimRepository _repo;
+        private IStatusRepository _statusRepo;
+
+        private IStatusRepository StatusRepo
+        {
+            get { return _statusRepo ?? (_statusRepo = new StatusRepository()); }
+            set { _statusRepo = value; }
+        }
 
         public CreateClaimInteractor() { }
 
-        public CreateClaimInteractor(IClaimRepository claimRepo)
+        public CreateClaimInteractor(IClaimRepository claimRepo, IStatusRepository statusRepo)
         {
-            _repo = claimRepo;
+            _claimRepo = claimRepo;
+            _statusRepo = statusRepo;
         }
 
         
-        public ClaimEntity Excute(Guid id)
+        public ClaimEntity Execute(Guid id)
         {
-            var newClaim = new ClaimEntity() {Id = Guid.NewGuid(), PolicyId = id};
-            newClaim = Repo.Create(newClaim);
+            var initialStatus = StatusRepo.GetByName("Open");
+            var newClaim = new ClaimEntity() {Id = Guid.NewGuid(), PolicyId = id, StatusId = initialStatus.Id};
+            newClaim = ClaimRepo.Create(newClaim);
 
             return newClaim;
         }
