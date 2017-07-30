@@ -39,11 +39,12 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
         {
             var claimModel = _claimService.GetById(claimId);
             var viewModel = new UnderwriterClaimViewModel(claimModel) {Statuses = GetStatusDropDownList()};
-            
+
+
             return View(viewModel);
         }
 
-        private IEnumerable<ClaimStatusViewModel> GetStatusDropDownList()
+        private List<ClaimStatusViewModel> GetStatusDropDownList()
         {
             var domainModels = _statusService.GetAll();
             var viewModels = new List<ClaimStatusViewModel>();

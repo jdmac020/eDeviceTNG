@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Models;
 using EDeviceClaims.WebUi.Models;
@@ -22,8 +23,8 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 
         public List<NoteViewModel> Notes { get; set; }
 
-        public IEnumerable<ClaimStatusViewModel> Statuses { get; set; }
-        public ClaimStatusViewModel NewStatus { get; set; }
+        public List<ClaimStatusViewModel> Statuses { get; set; }
+        public Guid NewStatus { get; set; }
 
         public UnderwriterClaimViewModel(ClaimDomainModel claim)
         {

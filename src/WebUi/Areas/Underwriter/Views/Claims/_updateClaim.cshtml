@@ -1,6 +1,24 @@
 ﻿@using EDeviceClaims.Core
 @model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
 
-<div>
-    @Html.DropDownListFor(m => m.NewStatus, new SelectList(Model.Statuses,"Id", "Name"),"Select A Thingy")
+
+
+<div class="center2ndElement">
+    
+    <div>
+        <h3>Add Note</h3>
+        Text Entry Area
+    </div>
+
+    <table class="table" id="updateClaimTable">
+        <tr>
+            <th>@Html.Label("Current Status")</th>
+            <td>@Model.Status.Name</td>
+        </tr>
+        <tr>
+            <th>@Html.Label("New Status")</th>
+            <td>@Html.DropDownListFor(m => Model.NewStatus, new SelectList(Model.Statuses, "Id", "Name"), "Select New Status")</td>
+        </tr>
+
+    </table>
 </div>

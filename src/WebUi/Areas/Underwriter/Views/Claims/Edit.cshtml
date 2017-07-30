@@ -1,23 +1,39 @@
 ﻿
 
 @model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
-    
+
 <h2 class="centerElement">Update Claim: @Model.Id</h2>
+@Html.Partial("_claimNotesTable", Model)
 @Html.Partial("_updateClaim", Model)
+
+
+@*<div class="centerElement">
+
+     @Html.Partial("_updateClaim", Model)
+
+</div>*@
 
 <div id="buttons">
     @*@Html.Partial("_claimButton", Model)*@
-    
+
     @Html.ActionLink("Complete Update", "Update", "Claims", new { updatedClaim = Model }, htmlAttributes: new { Class = "btn btn-warning btn-lg" })
     @Html.ActionLink("Cancel Update", "Index", "Claims", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
 
 </div>
 
 <style>
-    
     .centerElement {
         text-align: center;
         padding-top: 2%;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
+    .center2ndElement {
+        text-align: center;
+        padding-top: 15%;
         margin-left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
@@ -41,30 +57,27 @@
         align-content: center;
     }
 
-    table#claimListTable {
+    table#updateClaimTable {
         margin: auto;
         width: 30%;
-        background-color: #f1f1c1;
-        text-align: center;
     }
 
-    table#claimListTable tr:nth-child(even) {
-        background-color: #eee;
-    }
+        /*table#claimListTable tr:nth-child(even) {
+            background-color: #eee;
+        }
 
-    table#claimListTable tr:nth-child(odd) {
-        background-color: #fff;
-    }
+        table#claimListTable tr:nth-child(odd) {
+            background-color: #fff;
+        }
 
-    table#claimListTable th {
-        color: black;
-        background-color: gray;
-        text-align: left;
-    }
+        table#updateClaimTable th {
+            color: black;
+            background-color: gray;
+            text-align: left;
+        }*/
 
     table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
+        border: 1px solid black !important;
     }
 
     th, td {
@@ -73,7 +86,7 @@
 </style>
 
 
-@section scripts
-{
-    <script type="text/javascript" src="~/Scripts/device_details.js"></script>
-}
+@*@section scripts
+    {
+        <script type="text/javascript" src="~/Scripts/device_details.js"></script>
+    }*@

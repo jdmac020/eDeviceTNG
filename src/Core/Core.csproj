@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppRoles.cs" />
-    <Compile Include="ClaimStatusOptions.cs" />
+    <Compile Include="ClaimStatus.cs" />
     <Compile Include="IProfile.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="Constants.cs" />
