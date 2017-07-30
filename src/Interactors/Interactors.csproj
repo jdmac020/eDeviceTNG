@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreateClaimInteractor.cs" />
+    <Compile Include="GetStatusInteractor.cs" />
     <Compile Include="GetPolicyInteractor.cs" />
     <Compile Include="GetProfileInteractor.cs" />
     <Compile Include="GetUserInteractor.cs" />

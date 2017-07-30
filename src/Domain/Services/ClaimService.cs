@@ -53,9 +53,18 @@ namespace EDeviceClaims.Domain.Services
             set { _profileService = value; }
         }
 
+        private IStatusService _statusService;
+
+        private IStatusService StatusService
+        {
+            get { return _statusService ?? (_statusService = new StatusService()); }
+            set { _statusService = value; }
+        }
+
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
+            var initialStatus = StatusService.GetByName("Open");
 
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
             
@@ -68,6 +77,10 @@ namespace EDeviceClaims.Domain.Services
             else
             {
                 var newClaimEntity = CreateClaimInteractor.Excute(policyId);
+
+                var newClaimModel = new ClaimDomainModel(newClaimEntity);
+                newClaimModel.Status = initialStatus;
+
                 return new ClaimDomainModel(newClaimEntity);
             }
             
@@ -110,7 +123,7 @@ namespace EDeviceClaims.Domain.Services
 
         protected ClaimDomainModel GetCustomerNameForClaim(ClaimEntity existingClaim)
         {
-            var profile = ProfileService.GetProfileById(existingClaim.Policy.UserId);
+            var profile = ProfileService.GetProfileById(existingClaim.Policy.UserName);
 
             var claimModel = new ClaimDomainModel(existingClaim);
 
@@ -128,7 +141,7 @@ namespace EDeviceClaims.Domain.Services
             {
                 var claimModel = new ClaimDomainModel(claimEntity);
 
-                var profile = ProfileService.GetProfileById(claimEntity.Policy.UserId);
+                var profile = ProfileService.GetProfileById(claimEntity.Policy.UserName);
 
                 claimModel.CustomerFirstName = profile.FirstName;
                 claimModel.CustomerLastName = profile.LastName;

@@ -18,9 +18,11 @@ namespace EDeviceClaims.Entities
         [Required, StringLength(255)]
         public string CustomerEmail { get; set; }
 
+
         [Column("AuthorizedUser_Id")]
         public string UserId { get; set; }
         public AuthorizedUser User { get; set; }
+
 
         public virtual List<ClaimEntity> Claims { get; set; }
     }

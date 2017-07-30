@@ -182,6 +182,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ClaimStatusViewModel.cs" />
     <Compile Include="Models\ClaimViewModel.cs" />
     <Compile Include="Models\DeviceListViewModel.cs" />
     <Compile Include="Models\DeviceViewModel.cs" />
@@ -297,6 +298,9 @@
     <Content Include="Areas\Underwriter\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Underwriter\Views\Claims\Details.cshtml" />
     <Content Include="Areas\Underwriter\Views\Claims\_claimDetailsTable.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\_claimNotesTable.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\Edit.cshtml" />
+    <Content Include="Areas\Underwriter\Views\Claims\_updateClaim.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\device_details.js" />
     <Content Include="Scripts\indexJavaScript.js" />
@@ -350,6 +354,8 @@
     <Content Include="Views\Claim\ViewClaim.cshtml" />
     <Content Include="Views\Devices\_claimButton.cshtml" />
     <Content Include="Views\Devices\_deviceDetailsTable.cshtml" />
+    <Content Include="Views\Claim\_claimDetailsTable.cshtml" />
+    <Content Include="Views\Claim\_claimNotesTable.cshtml" />
     <None Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>

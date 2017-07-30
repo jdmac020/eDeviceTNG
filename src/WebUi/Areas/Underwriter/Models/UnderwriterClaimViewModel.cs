@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Models;
+using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 {
     public class UnderwriterClaimViewModel
     {
-        public string Status { get; set; }
+        public ClaimStatusViewModel Status { get; set; }
 
         public string Start { get; set; }
 
@@ -16,6 +20,11 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 
         public Guid Id { get; set; }
 
+        public List<NoteViewModel> Notes { get; set; }
+
+        public IEnumerable<ClaimStatusViewModel> Statuses { get; set; }
+        public ClaimStatusViewModel NewStatus { get; set; }
+
         public UnderwriterClaimViewModel(ClaimDomainModel claim)
         {
             Id = claim.Id;
@@ -23,7 +32,19 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
             DeviceName = claim.Policy.DeviceName;
             PolicyHolderName = $"{claim.CustomerFirstName} {claim.CustomerLastName}";
             Start = $"{claim.WhenStarted.ToShortDateString()} {claim.WhenStarted.ToShortTimeString()}";
-            Status = claim.Status.ToString();
+            Status = new ClaimStatusViewModel(claim.Status);
+            Notes = new List<NoteViewModel>();
+            //InitializeNotes();
+        }
+
+        private void InitializeNotes(List<NoteViewModel> notes)
+        {
+            if (notes.Any())
+            {
+                Notes = notes;
+            }
+
+            Notes = new List<NoteViewModel>();
         }
         
     }

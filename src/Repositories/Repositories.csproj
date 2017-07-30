@@ -55,6 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201707231805113_addedStatusEntity.cs" />
+    <Compile Include="Migrations\201707231805113_addedStatusEntity.Designer.cs">
+      <DependentUpon>201707231805113_addedStatusEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatusRepository.cs" />
     <Compile Include="EDeviceClaimsUnitOfWork.cs" />
     <Compile Include="ClaimRepository.cs" />
     <Compile Include="Migrations\201509041738522_updatedPolicyFieldLengths.cs" />

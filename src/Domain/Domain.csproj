@@ -57,6 +57,8 @@
     <Compile Include="Models\PolicyWithClaimsDomainModel.cs" />
     <Compile Include="Models\ClaimDomainModel.cs" />
     <Compile Include="Models\ProfileDomainModel.cs" />
+    <Compile Include="Models\StatusDomainModel.cs" />
+    <Compile Include="Services\StatusService.cs" />
     <Compile Include="Services\ClaimService.cs" />
     <Compile Include="Services\PolicyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
