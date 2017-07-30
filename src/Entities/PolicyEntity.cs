@@ -20,6 +20,7 @@ namespace EDeviceClaims.Entities
 
         [Column("AuthorizedUser_Id")]
         public string UserId { get; set; }
+        public AuthorizedUser User { get; set; }
 
         public virtual List<ClaimEntity> Claims { get; set; }
     }
