@@ -31,7 +31,7 @@ namespace EDeviceClaims.Interactors
 
             foreach (var device in devices)
             {
-                device.UserName = user.Id;
+                device.UserId = user.Id;
                 Repo.Update(device);
             }
             

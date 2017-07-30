@@ -53,7 +53,7 @@ namespace EDeviceClaims.Repositories.Migrations
                 SerialNumber = "ABCDEF",
                 DeviceName = "iPhone 6+",
                 CustomerEmail = "user@personal.com",
-                UserName = policyHolder.Id
+                UserId = policyHolder.Id
             };
             var p2 = new Policy
             {
@@ -62,7 +62,8 @@ namespace EDeviceClaims.Repositories.Migrations
                 SerialNumber = "GHIJKL",
                 DeviceName = "Android",
                 CustomerEmail = "user@personal.com",
-                UserName = policyHolder.Id
+                UserId = policyHolder.Id
+
             };
 
             var p3 = new Policy

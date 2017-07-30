@@ -55,9 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201707231805113_addedStatusEntity.cs" />
-    <Compile Include="Migrations\201707231805113_addedStatusEntity.Designer.cs">
-      <DependentUpon>201707231805113_addedStatusEntity.cs</DependentUpon>
+    <Compile Include="Migrations\201707301344177_addedStatusEntity.cs" />
+    <Compile Include="Migrations\201707301344177_addedStatusEntity.Designer.cs">
+      <DependentUpon>201707301344177_addedStatusEntity.cs</DependentUpon>
     </Compile>
     <Compile Include="StatusRepository.cs" />
     <Compile Include="EDeviceClaimsUnitOfWork.cs" />
@@ -136,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707101400228_addUserFirstNameAndLastName.resx">
       <DependentUpon>201707101400228_addUserFirstNameAndLastName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707301344177_addedStatusEntity.resx">
+      <DependentUpon>201707301344177_addedStatusEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
