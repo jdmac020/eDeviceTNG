@@ -44,11 +44,11 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Update(UnderwriterClaimViewModel model)
+        public ActionResult Update(UnderwriterClaimViewModel updatedClaim)
         {
+            _claimService.UpdateClaimStatus(updatedClaim.Id, updatedClaim.NewStatus);
 
-
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         private List<ClaimStatusViewModel> GetStatusDropDownList()

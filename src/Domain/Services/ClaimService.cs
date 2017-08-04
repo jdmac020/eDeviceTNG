@@ -17,6 +17,7 @@ namespace EDeviceClaims.Domain.Services
         ClaimDomainModel GetById(Guid id);
 
         List<ClaimDomainModel> GetAllOpen();
+        void UpdateClaimStatus(Guid claimId, Guid statusId);
     }
 
     public class ClaimService : IClaimService
@@ -59,6 +60,14 @@ namespace EDeviceClaims.Domain.Services
         {
             get { return _getStatusInteractor ?? (_getStatusInteractor = new GetStatusInteractor()); }
             set { _getStatusInteractor = value; }
+        }
+
+        private IUpdateClaimInteractor _updateClaimInteractor;
+
+        private IUpdateClaimInteractor UpdateClaimInteractor
+        {
+            get { return _updateClaimInteractor ?? (_updateClaimInteractor = new UpdateClaimInteractor()); }
+            set { _updateClaimInteractor = value; }
         }
 
         public ClaimDomainModel StartClaim(Guid policyId)
@@ -119,6 +128,11 @@ namespace EDeviceClaims.Domain.Services
             //    .Select(claim => new ClaimDomainModel(claim))
             //    .OrderBy(c => c.WhenStarted)
             //    .ToList();
+        }
+
+        public void UpdateClaimStatus(Guid claimId, Guid statusId)
+        {
+            UpdateClaimInteractor.UpdateStatus(claimId, statusId);
         }
 
         protected ClaimDomainModel GetCustomerNameForClaim(ClaimEntity existingClaim)
