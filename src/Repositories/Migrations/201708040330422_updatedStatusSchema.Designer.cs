@@ -7,13 +7,13 @@ namespace EDeviceClaims.Repositories.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class changedStatusSchema : IMigrationMetadata
+    public sealed partial class updatedStatusSchema : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changedStatusSchema));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatedStatusSchema));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708040136590_changedStatusSchema"; }
+            get { return "201708040330422_updatedStatusSchema"; }
         }
         
         string IMigrationMetadata.Source

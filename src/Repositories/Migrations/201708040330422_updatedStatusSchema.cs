@@ -3,7 +3,7 @@ namespace EDeviceClaims.Repositories.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class changedStatusSchema : DbMigration
+    public partial class updatedStatusSchema : DbMigration
     {
         public override void Up()
         {
