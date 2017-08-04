@@ -4,7 +4,7 @@ using EDeviceClaims.Core;
 
 namespace EDeviceClaims.Entities
 {
-  public class EntityBase<TKey> : IEntity<TKey>
+    public class EntityBase<TKey> : IEntity<TKey>
   {
     [Key]
     public TKey Id { get; set; }

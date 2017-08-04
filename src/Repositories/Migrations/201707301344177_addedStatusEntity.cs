@@ -17,16 +17,16 @@ namespace EDeviceClaims.Repositories.Migrations
                 .PrimaryKey(t => t.Id);
             
             AddColumn("app.claims", "Status_Id", c => c.Guid());
-            CreateIndex("app.claims", "Status_Id");
-            AddForeignKey("app.claims", "Status_Id", "dbo.StatusEntities", "Id");
+            //CreateIndex("app.claims", "Status_Id");
+            //AddForeignKey("app.claims", "Status_Id", "dbo.StatusEntities", "Id");
             DropColumn("app.claims", "Status");
         }
         
         public override void Down()
         {
             AddColumn("app.claims", "Status", c => c.Int(nullable: false));
-            DropForeignKey("app.claims", "Status_Id", "dbo.StatusEntities");
-            DropIndex("app.claims", new[] { "Status_Id" });
+            //DropForeignKey("app.claims", "Status_Id", "dbo.StatusEntities");
+            //DropIndex("app.claims", new[] { "Status_Id" });
             DropColumn("app.claims", "Status_Id");
             DropTable("dbo.StatusEntities");
         }

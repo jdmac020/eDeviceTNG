@@ -44,6 +44,13 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Update(UnderwriterClaimViewModel model)
+        {
+
+
+            return View("Index");
+        }
+
         private List<ClaimStatusViewModel> GetStatusDropDownList()
         {
             var domainModels = _statusService.GetAll();

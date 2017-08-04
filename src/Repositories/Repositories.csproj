@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201707301545487_addedStatusIdToClaimEntity.Designer.cs">
       <DependentUpon>201707301545487_addedStatusIdToClaimEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708040136590_changedStatusSchema.cs" />
+    <Compile Include="Migrations\201708040136590_changedStatusSchema.Designer.cs">
+      <DependentUpon>201708040136590_changedStatusSchema.cs</DependentUpon>
+    </Compile>
     <Compile Include="StatusRepository.cs" />
     <Compile Include="EDeviceClaimsUnitOfWork.cs" />
     <Compile Include="ClaimRepository.cs" />
@@ -146,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707301545487_addedStatusIdToClaimEntity.resx">
       <DependentUpon>201707301545487_addedStatusIdToClaimEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708040136590_changedStatusSchema.resx">
+      <DependentUpon>201708040136590_changedStatusSchema.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
