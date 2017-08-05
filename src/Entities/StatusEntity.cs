@@ -8,8 +8,8 @@ namespace EDeviceClaims.Entities
     [Table("statuses", Schema = "app")]
     public class StatusEntity : IEntity<Guid>
     {
-        public Guid Id { get; set; }
         [Key]
+        public Guid Id { get; set; }
         public string Name { get; set; }
         
     }

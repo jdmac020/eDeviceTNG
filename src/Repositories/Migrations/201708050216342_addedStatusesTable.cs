@@ -3,12 +3,12 @@ namespace EDeviceClaims.Repositories.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addedStatusEntity : DbMigration
+    public partial class addedStatusesTable : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.StatusEntities",
+                "app.statuses",
                 c => new
                     {
                         Id = c.Guid(nullable: false),
@@ -16,19 +16,19 @@ namespace EDeviceClaims.Repositories.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
-            AddColumn("app.claims", "Status_Id", c => c.Guid());
-            //CreateIndex("app.claims", "Status_Id");
-            //AddForeignKey("app.claims", "Status_Id", "dbo.StatusEntities", "Id");
+            AddColumn("app.claims", "StatusId", c => c.Guid(nullable: false));
+            CreateIndex("app.claims", "StatusId");
+            AddForeignKey("app.claims", "StatusId", "app.statuses", "Id", cascadeDelete: true);
             DropColumn("app.claims", "Status");
         }
         
         public override void Down()
         {
             AddColumn("app.claims", "Status", c => c.Int(nullable: false));
-            //DropForeignKey("app.claims", "Status_Id", "dbo.StatusEntities");
-            //DropIndex("app.claims", new[] { "Status_Id" });
-            DropColumn("app.claims", "Status_Id");
-            DropTable("dbo.StatusEntities");
+            DropForeignKey("app.claims", "StatusId", "app.statuses");
+            DropIndex("app.claims", new[] { "StatusId" });
+            DropColumn("app.claims", "StatusId");
+            DropTable("app.statuses");
         }
     }
 }

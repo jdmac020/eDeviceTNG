@@ -44,9 +44,9 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Update(UnderwriterClaimViewModel updatedClaim)
+        public ActionResult Update(Guid claimId, Guid newStatusId)
         {
-            _claimService.UpdateClaimStatus(updatedClaim.Id, updatedClaim.NewStatus);
+            _claimService.UpdateClaimStatus(claimId, newStatusId);
 
             return RedirectToAction("Index");
         }

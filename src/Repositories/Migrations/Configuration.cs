@@ -124,13 +124,14 @@ namespace EDeviceClaims.Repositories.Migrations
             var statusRepo = new StatusRepository();
             var statuses = Enum.GetNames(typeof(ClaimStatusOptions)).ToList();
 
+            if (statusRepo.GetAll().Count > 0) return;
+
             foreach (var status in statuses)
             {
                 var newStatus = new StatusEntity {Id = Guid.NewGuid(), Name = status};
 
                 statusRepo.Create(newStatus);
             }
-
         }
     }
 }
