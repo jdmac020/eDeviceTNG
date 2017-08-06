@@ -34,7 +34,7 @@ namespace EDeviceClaims.Repositories
 
         public List<ClaimEntity> GetAllOpen()
         {
-            return ObjectSet.Where(c => c.Status.Name == "Open")
+            return ObjectSet.Where(c => c.Status.Name != "Approved" && c.Status.Name != "Denied")
                 .Include(c => c.Policy)
                 .ToList();
         }

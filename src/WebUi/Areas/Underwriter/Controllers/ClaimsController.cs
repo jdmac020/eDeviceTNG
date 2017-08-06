@@ -53,7 +53,7 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
 
         private List<ClaimStatusViewModel> GetStatusDropDownList()
         {
-            var domainModels = _statusService.GetAll();
+            var domainModels = _statusService.GetAll().Where(u => u.Name != "New").ToList();
             var viewModels = new List<ClaimStatusViewModel>();
 
             foreach (var domainModel in domainModels)

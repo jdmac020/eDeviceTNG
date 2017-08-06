@@ -73,7 +73,6 @@ namespace EDeviceClaims.Domain.Services
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
-            var initialStatus = GetStatusInteractor.ExecuteForName("Open");
 
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
             
@@ -87,7 +86,7 @@ namespace EDeviceClaims.Domain.Services
             {
                 var newClaimEntity = CreateClaimInteractor.Execute(policyId);
 
-                newClaimEntity.Status = initialStatus;
+                newClaimEntity.Status = GetStatusInteractor.ExecuteForId(newClaimEntity.StatusId);
                 newClaimEntity.Policy = policy;
 
                 return new ClaimDomainModel(newClaimEntity);

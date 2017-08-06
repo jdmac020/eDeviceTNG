@@ -44,7 +44,7 @@ namespace EDeviceClaims.WebUi.Models
 
             if (claimsList.Any())
             {
-                if (claimsList.First().Status.Name == "Open")
+                if (claimsList.First().Status.Name == "New" || claimsList.First().Status.Name == "AwaitingInfo" || claimsList.First().Status.Name == "PendingReview")
                 {
                     return claimsList.First();
                 }
