@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using EDeviceClaims.Entities;
 using NUnit.Framework;
 
 using EDeviceClaims.Interactors;
@@ -22,23 +22,35 @@ namespace EDeviceClaimSystem.Interactors.Tests
             IClaimRepository mirrorClaimRepo = new MirrorClaimRepository();
             IStatusRepository mirrorStatusRepo = new MirrorStatusRepository();
 
-            var interactor = new UpdateClaimInteractor(mirrorClaimRepo, miStatusRepo);
+            var interactor = new UpdateClaimInteractor(mirrorClaimRepo, mirrorStatusRepo);
             
             return interactor;
         }
 
+        private StatusEntity StatusFactory()
+        {
+            return new StatusEntity {Id = Guid.NewGuid(), Name = "Irrelevant"};
+        }
+
+        private ClaimEntity ClaimFactory()
+        {
+            return new ClaimEntity {Id = Guid.NewGuid(), PolicyId = Guid.NewGuid(), StatusId = Guid.NewGuid()};
+        }
+
         [Test]
-        public void Execute_NewClaimId_RetirievedClaimHasSameId()
+        public void UpdateStatus_NewClaimIdAndStatusId_UpdatedClaimHasNewStatusId()
         {
             // Arrange
-            GetClaimInteractor interactor = InteractorFactory();
-            Guid newClaimId = Guid.NewGuid();
+            UpdateClaimInteractor interactor = InteractorFactory();
+            ClaimEntity claimToUpdate = ClaimFactory();
+            StatusEntity newStatus = StatusFactory();
+            var testValue = claimToUpdate.StatusId;
 
             // Run
-            var newClaim = interactor.Execute(newClaimId);
+            var updatedClaim = interactor.UpdateStatus(claimToUpdate, newStatus);
 
             // Assert
-            newClaim.Id.ShouldBe(newClaimId);
+            updatedClaim.StatusId.ShouldNotBe(testValue);
         }
     }
 }

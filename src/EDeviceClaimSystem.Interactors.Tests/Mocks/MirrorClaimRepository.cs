@@ -17,9 +17,9 @@ namespace EDeviceClaimSystem.Interactors.Tests.Mocks
             return new ClaimEntity { Id = claim.Id, PolicyId = claim.PolicyId, StatusId = claim.StatusId };
         }
 
-        public new ClaimEntity Update(ClaimEntity claim)
+        public new void Update(ClaimEntity claim)
         {
-            return new ClaimEntity {Id = claim.Id, PolicyId = claim.PolicyId, StatusId = claim.StatusId};
+            
         }
 
         public new ClaimEntity GetById(Guid id)

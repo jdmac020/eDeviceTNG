@@ -34,7 +34,7 @@ namespace EDeviceClaimSystem.Interactors.Tests
             Guid newClaimId = Guid.NewGuid();
 
             // Run
-            var newClaim = interactor.Execute(newClaimId);
+            var newClaim = interactor.GetById(newClaimId);
 
             // Assert
             newClaim.Id.ShouldBe(newClaimId);
