@@ -31,6 +31,7 @@ namespace EDeviceClaims.Interactors
             var newStatus = StatusRepo.GetById(statusId);
 
             claim.Status = newStatus;
+            claim.WhenLastModified = DateTime.Now;
 
             ClaimRepo.Update(claim);
         }

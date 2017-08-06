@@ -18,11 +18,13 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Models
 
         public List<ClaimStatusViewModel> Statuses { get; set; }
         public Guid NewStatusId { get; set; }
+        public string LastModified { get; set; }
 
         public UnderwriterClaimEditViewModel(ClaimDomainModel claim)
         {
             Id = claim.Id;
             Status = new ClaimStatusViewModel(claim.Status);
+            LastModified = claim.WhenLastModified.ToString();
             Notes = new List<NoteViewModel>();
             //InitializeNotes();
         }

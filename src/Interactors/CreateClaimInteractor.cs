@@ -41,7 +41,7 @@ namespace EDeviceClaims.Interactors
         
         public ClaimEntity Execute(Guid id)
         {
-            var initialStatus = StatusRepo.GetByName("Open");
+            var initialStatus = StatusRepo.GetByName("New");
             var newClaim = new ClaimEntity() {Id = Guid.NewGuid(), PolicyId = id, StatusId = initialStatus.Id};
             newClaim = ClaimRepo.Create(newClaim);
 

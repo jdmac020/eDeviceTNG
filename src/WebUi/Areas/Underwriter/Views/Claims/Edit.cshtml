@@ -16,7 +16,7 @@
 <div id="buttons">
     @*@Html.Partial("_claimButton", Model)*@
 
-    @Html.ActionLink("Complete Update", "Update", "Claims", routeValues: new { claimId = Model.Id, newStatusId = Model.NewStatusId }, htmlAttributes: new { Class = "btn btn-warning btn-lg" })
+    @*@Html.ActionLink("Complete Update", "Update", "Claims", routeValues: new { claimId = Model.Id, newStatusId = Model.NewStatusId }, htmlAttributes: new { Class = "btn btn-warning btn-lg" })*@
     @Html.ActionLink("Cancel Update", "Index", "Claims", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
 
 </div>
