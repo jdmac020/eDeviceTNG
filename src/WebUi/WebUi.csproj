@@ -170,6 +170,7 @@
     <Compile Include="Areas\Underwriter\Controllers\ClaimsController.cs" />
     <Compile Include="Areas\Underwriter\Controllers\UnderwriterAppController.cs" />
     <Compile Include="Areas\Underwriter\Models\ClaimsListViewModel.cs" />
+    <Compile Include="Areas\Underwriter\Models\UnderwriterClaimEditViewModel.cs" />
     <Compile Include="Areas\Underwriter\Models\UnderwriterClaimViewModel.cs" />
     <Compile Include="Areas\Underwriter\UnderwriterAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />

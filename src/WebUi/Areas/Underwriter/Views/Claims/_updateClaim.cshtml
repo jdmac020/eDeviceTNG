@@ -1,22 +1,39 @@
-﻿@model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
+﻿@using System.Web.Mvc.Html
+@model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimEditViewModel
 
 <div class="center2ndElement">
-    
+
     <div>
         <h3>Add Note</h3>
         Text Entry Area
     </div>
     
-    
-    <table class="table" id="updateClaimTable">
+    <div>
+        
+        Current Status: @Model.Status.Name
+        <hr />
+        
+        @using (Html.BeginForm("Update", "Claims", routeValues: new { claimId = Model.Id, newStatusId = Model.NewStatusId }))
+        {
+            @*@Html.HiddenFor(m => m.Id)*@
+            @Html.Label("Update Status")
+            @Html.DropDownListFor(m => m.NewStatusId, new SelectList(Model.Statuses, "Id", "Name"), "Select New Status")
+            <input type="submit" value="Update Claim" class="btn btn-default" />
+        }
+
+    </div>
+
+    @*<table class="table" id="updateClaimTable">
         <tr>
             <th>@Html.Label("Current Status")</th>
             <td>@Model.Status.Name</td>
         </tr>
         <tr>
-            <th>@Html.Label("New Status")</th>
-            <td>@Html.DropDownListFor(m => Model.NewStatus, new SelectList(Model.Statuses, "Id", "Name"), "Select New Status")</td>
+            <th>@Html.Label("Update Status")</th>
+            <td>@Html.DropDownListFor(m => m.NewStatusId, new SelectList(Model.Statuses, "Id", "Name"), "Select New Status")</td>
+            <td></td>
         </tr>
-    </table>
-    
+        <tr></tr>
+    </table>*@
+
 </div>

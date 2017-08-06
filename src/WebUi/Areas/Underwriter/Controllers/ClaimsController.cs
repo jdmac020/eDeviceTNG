@@ -38,7 +38,7 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
         public ActionResult Edit(Guid claimId)
         {
             var claimModel = _claimService.GetById(claimId);
-            var viewModel = new UnderwriterClaimViewModel(claimModel) {Statuses = GetStatusDropDownList()};
+            var viewModel = new UnderwriterClaimEditViewModel(claimModel) {Statuses = GetStatusDropDownList()};
 
 
             return View(viewModel);
