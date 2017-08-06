@@ -9,6 +9,12 @@ namespace EDeviceClaims.Interactors
     }
     public class UpdateClaimInteractor : IUpdateClaimInteractor
     {
+        public UpdateClaimInteractor(IClaimRepository claimRepository, IStatusRepository statusRepository)
+        {
+            _claimRepo = claimRepository;
+            _statusRepo = statusRepository;
+        }
+
         private IClaimRepository _claimRepo;
 
         private IClaimRepository ClaimRepo

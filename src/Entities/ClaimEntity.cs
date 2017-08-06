@@ -14,6 +14,7 @@ namespace EDeviceClaims.Entities
         public Guid PolicyId { get; set; }
         public virtual Policy Policy { get; set; }
         public Guid StatusId { get; set; }
+        public string StatusName { get; set; }
         public virtual StatusEntity Status { get; set; }
     }
 }
