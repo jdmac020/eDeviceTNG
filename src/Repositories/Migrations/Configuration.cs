@@ -33,6 +33,8 @@ namespace EDeviceClaims.Repositories.Migrations
             //    );
             //
 
+            SetStatuses();
+
             var roleStore = new RoleStore<IdentityRole>(context);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
 
@@ -61,6 +63,7 @@ namespace EDeviceClaims.Repositories.Migrations
                 DeviceName = "Android",
                 CustomerEmail = "user@personal.com",
                 UserId = policyHolder.Id
+
             };
 
             var p3 = new Policy
@@ -92,7 +95,7 @@ namespace EDeviceClaims.Repositories.Migrations
             //context.SaveChanges();
         }
 
-        public AuthorizedUser CreateUser(string userName, string email, string firstName, string lastName, EDeviceClaimsContext context, string role = AppRoles.PolicyHolder)
+        private AuthorizedUser CreateUser(string userName, string email, string firstName, string lastName, EDeviceClaimsContext context, string role = AppRoles.PolicyHolder)
         {
             var userStore = new UserStore<AuthorizedUser>(context);
             var userManager = new UserManager<AuthorizedUser>(userStore);
@@ -114,6 +117,21 @@ namespace EDeviceClaims.Repositories.Migrations
             roleManager.Create(new IdentityRole { Name = role });
             userManager.AddToRole(user.Id, role);
             return user;
+        }
+
+        private void SetStatuses()
+        {
+            var statusRepo = new StatusRepository();
+            var statuses = Enum.GetNames(typeof(ClaimStatusOptions)).ToList();
+
+            if (statusRepo.GetAll().Count > 0) return;
+
+            foreach (var status in statuses)
+            {
+                var newStatus = new StatusEntity {Id = Guid.NewGuid(), Name = status};
+
+                statusRepo.Create(newStatus);
+            }
         }
     }
 }

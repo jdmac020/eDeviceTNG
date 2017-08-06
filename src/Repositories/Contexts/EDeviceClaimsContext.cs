@@ -1,5 +1,6 @@
 using System;
 using System.Data.Entity;
+using EDeviceClaims.Core;
 using EDeviceClaims.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -10,6 +11,8 @@ namespace EDeviceClaims.Repositories.Contexts
         public DbSet<Policy> Policies { get; set; }
 
         public DbSet<ClaimEntity> Claims { get; set; }
+
+        public DbSet<StatusEntity> Statuses { get; set; }
 
         public EDeviceClaimsContext(string cn) : base(cn)
         {

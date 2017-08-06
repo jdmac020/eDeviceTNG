@@ -1,0 +1,37 @@
+﻿@using System.Web.Mvc.Html
+@model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimEditViewModel
+
+<div class="center2ndElement">
+    
+    <hr />
+
+    <div>
+        <h3>Add Note</h3>
+        Claim Notes Coming in Version 1.10!
+    </div>
+
+    <hr />
+
+    @using (Html.BeginForm("Update", "Claims", routeValues: new { claimId = Model.Id, newStatusId = Model.NewStatusId }))
+    {
+        <table class="table" id="updateClaimTable">
+            <tr>
+                <th>@Html.Label("Current Status")</th>
+                <td>@Model.Status.Name</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("Last Updated")</th>
+                <td>@Model.LastModified</td>
+            </tr>
+            <tr>
+                <th>@Html.Label("Update Status")</th>
+                <td>@Html.DropDownListFor(m => m.NewStatusId, new SelectList(Model.Statuses, "Id", "Name"), "Select New Status")</td>
+                
+            </tr>
+            <tr>
+                <th>@Html.Label("Actions")</th>
+                <td><input type="submit" value="Update Claim" class="btn btn-warning btn-lg"/></td>
+            </tr>
+        </table>
+    }
+</div>

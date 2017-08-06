@@ -1,0 +1,28 @@
+﻿@model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
+
+<h3 class="centerElement">Notes</h3>
+
+@if (Model.Notes.Any())
+{
+    foreach (var note in Model.Notes)
+    {
+        <div>
+            <table class="table" id="claimNotesTable">
+                <tr>
+                    <th>@Html.Label("Note")</th>
+                    <th>@Html.Label("Created")</th>
+                    <th> @Html.Label("Author")</th>
+                </tr>
+                <tr>
+                    <td>@note.Content</td>
+                    <td>@note.WhenCreated.GetValueOrDefault()</td>
+                    <td>@note.CreatedBy</td>
+                </tr>
+            </table>
+        </div>
+    }
+}
+else
+{
+    <div id="notesPlaceHolder">No Notes on File</div>
+}

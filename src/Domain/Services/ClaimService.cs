@@ -17,6 +17,7 @@ namespace EDeviceClaims.Domain.Services
         ClaimDomainModel GetById(Guid id);
 
         List<ClaimDomainModel> GetAllOpen();
+        void UpdateClaimStatus(Guid claimId, Guid statusId);
     }
 
     public class ClaimService : IClaimService
@@ -53,6 +54,22 @@ namespace EDeviceClaims.Domain.Services
             set { _profileService = value; }
         }
 
+        private IGetStatusInteractor _getStatusInteractor;
+
+        private IGetStatusInteractor GetStatusInteractor
+        {
+            get { return _getStatusInteractor ?? (_getStatusInteractor = new GetStatusInteractor()); }
+            set { _getStatusInteractor = value; }
+        }
+
+        private IUpdateClaimInteractor _updateClaimInteractor;
+
+        private IUpdateClaimInteractor UpdateClaimInteractor
+        {
+            get { return _updateClaimInteractor ?? (_updateClaimInteractor = new UpdateClaimInteractor()); }
+            set { _updateClaimInteractor = value; }
+        }
+
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
@@ -67,7 +84,11 @@ namespace EDeviceClaims.Domain.Services
             }
             else
             {
-                var newClaimEntity = CreateClaimInteractor.Excute(policyId);
+                var newClaimEntity = CreateClaimInteractor.Execute(policyId);
+
+                newClaimEntity.Status = GetStatusInteractor.ExecuteForId(newClaimEntity.StatusId);
+                newClaimEntity.Policy = policy;
+
                 return new ClaimDomainModel(newClaimEntity);
             }
             
@@ -106,6 +127,11 @@ namespace EDeviceClaims.Domain.Services
             //    .Select(claim => new ClaimDomainModel(claim))
             //    .OrderBy(c => c.WhenStarted)
             //    .ToList();
+        }
+
+        public void UpdateClaimStatus(Guid claimId, Guid statusId)
+        {
+            UpdateClaimInteractor.UpdateStatus(claimId, statusId);
         }
 
         protected ClaimDomainModel GetCustomerNameForClaim(ClaimEntity existingClaim)

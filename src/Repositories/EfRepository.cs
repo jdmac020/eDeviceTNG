@@ -28,6 +28,7 @@ namespace EDeviceClaims.Repositories
         }
         public void Update(TEntity entity)
         {
+            
             ObjectSet.AddOrUpdate(entity);
             EfUnitOfWork.Commit();
         }

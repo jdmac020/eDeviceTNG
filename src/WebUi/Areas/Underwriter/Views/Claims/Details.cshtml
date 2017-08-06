@@ -2,18 +2,37 @@
 
 @model EDeviceClaims.WebUi.Areas.Underwriter.Models.UnderwriterClaimViewModel
     
-<h2 style="text-align: center;">@Model.DeviceName Details</h2>
+<h2 class="centerElement">Claim: @Model.Id</h2>
 @Html.Partial("_claimDetailsTable", Model)
+@Html.Partial("_claimNotesTable", Model)
 
 <div id="buttons">
     @*@Html.Partial("_claimButton", Model)*@
-
+    
+    @Html.ActionLink("Update Claim", "Edit", "Claims", new { claimId = Model.Id }, htmlAttributes: new { Class = "btn btn-warning btn-lg" })
     @Html.ActionLink("Back to Open Claims", "Index", "Claims", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
 
 </div>
 
 <style>
     
+    .centerElement {
+        text-align: center;
+        padding-top: 2%;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
+    #notesPlaceHolder {
+        text-align: center;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
     #buttons {
         text-align: center;
         padding-top: 10%;

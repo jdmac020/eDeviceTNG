@@ -1,9 +1,11 @@
 namespace EDeviceClaims.Core
 {
-    public enum ClaimStatus
-    {
-        Open,
-        Denied,
-        Approved
-    }
+        public enum ClaimStatusOptions
+        {
+            New,
+            Denied,
+            Approved,
+            AwaitingInfo,
+            PendingReview
+        }
 }

@@ -55,6 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201708050216342_addedStatusesTable.cs" />
+    <Compile Include="Migrations\201708050216342_addedStatusesTable.Designer.cs">
+      <DependentUpon>201708050216342_addedStatusesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatusRepository.cs" />
     <Compile Include="EDeviceClaimsUnitOfWork.cs" />
     <Compile Include="ClaimRepository.cs" />
     <Compile Include="Migrations\201509041738522_updatedPolicyFieldLengths.cs" />
@@ -76,10 +81,6 @@
     <Compile Include="Migrations\201707101400228_addUserFirstNameAndLastName.cs" />
     <Compile Include="Migrations\201707101400228_addUserFirstNameAndLastName.Designer.cs">
       <DependentUpon>201707101400228_addUserFirstNameAndLastName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707102107169_removedUserFromPolicy.cs" />
-    <Compile Include="Migrations\201707102107169_removedUserFromPolicy.Designer.cs">
-      <DependentUpon>201707102107169_removedUserFromPolicy.cs</DependentUpon>
     </Compile>
     <Compile Include="PolicyRepository.cs" />
     <Compile Include="EfUnitOfWork.cs" />
@@ -136,8 +137,8 @@
     <EmbeddedResource Include="Migrations\201707101400228_addUserFirstNameAndLastName.resx">
       <DependentUpon>201707101400228_addUserFirstNameAndLastName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707102107169_removedUserFromPolicy.resx">
-      <DependentUpon>201707102107169_removedUserFromPolicy.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708050216342_addedStatusesTable.resx">
+      <DependentUpon>201708050216342_addedStatusesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

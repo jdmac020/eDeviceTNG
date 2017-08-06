@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -6,6 +7,7 @@ using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.WebUi.Areas.Underwriter.Models;
 using EDeviceClaims.WebUi.Controllers;
+using EDeviceClaims.WebUi.Models;
 
 namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
 {
@@ -13,6 +15,7 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
     {
         private IPolicyService _policyService = new PolicyService();
         private IClaimService _claimService = new ClaimService();
+        private IStatusService _statusService = new StatusService();
 
         // GET: Underwriter/Device
         public ActionResult Index()
@@ -30,6 +33,35 @@ namespace EDeviceClaims.WebUi.Areas.Underwriter.Controllers
             var viewModel = new UnderwriterClaimViewModel(claimModel);
 
             return View(viewModel);
+        }
+
+        public ActionResult Edit(Guid claimId)
+        {
+            var claimModel = _claimService.GetById(claimId);
+            var viewModel = new UnderwriterClaimEditViewModel(claimModel) {Statuses = GetStatusDropDownList()};
+
+
+            return View(viewModel);
+        }
+
+        public ActionResult Update(Guid claimId, Guid newStatusId)
+        {
+            _claimService.UpdateClaimStatus(claimId, newStatusId);
+
+            return RedirectToAction("Index");
+        }
+
+        private List<ClaimStatusViewModel> GetStatusDropDownList()
+        {
+            var domainModels = _statusService.GetAll().Where(u => u.Name != "New").ToList();
+            var viewModels = new List<ClaimStatusViewModel>();
+
+            foreach (var domainModel in domainModels)
+            {
+                viewModels.Add(new ClaimStatusViewModel(domainModel));
+            }
+
+            return viewModels;
         }
     }
 }

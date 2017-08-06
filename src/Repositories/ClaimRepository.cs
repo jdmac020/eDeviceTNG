@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EDeviceClaims.Core;
 using EDeviceClaims.Entities;
+
 
 namespace EDeviceClaims.Repositories
 {
@@ -32,9 +34,19 @@ namespace EDeviceClaims.Repositories
 
         public List<ClaimEntity> GetAllOpen()
         {
-            return ObjectSet.Where(c => c.Status == ClaimStatus.Open)
+            return ObjectSet.Where(c => c.Status.Name != "Approved" && c.Status.Name != "Denied")
                 .Include(c => c.Policy)
                 .ToList();
+        }
+
+        public new void Update(ClaimEntity claim)
+        {
+            EfUnitOfWork.Context.Entry(claim.Status).State = EntityState.Detached;
+            ObjectSet.AddOrUpdate(claim);
+            EfUnitOfWork.Commit();
+
+            //ObjectSet.AddOrUpdate(claim);
+            //EfUnitOfWork.Commit();
         }
     }
 }

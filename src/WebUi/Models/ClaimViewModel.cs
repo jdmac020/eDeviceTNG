@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Models;
 using EDeviceClaims.Domain.Services;
+using EDeviceClaims.Entities;
 
 namespace EDeviceClaims.WebUi.Models
 {
@@ -13,15 +15,20 @@ namespace EDeviceClaims.WebUi.Models
         public string PolicyNumber { get; set; }
         public string DeviceName { get; set; }
         public string SerialNumber { get; set; }
-        public string Status { get; set; }
+        public string Opened { get; set; }
+        public ClaimStatusViewModel Status { get; set; }
         public List<NoteViewModel> Notes { get; set; } = new List<NoteViewModel>();
         
         public ClaimViewModel(ClaimDomainModel domainModel)
         {
             Id = domainModel.Id;
+            Opened = $"{domainModel.WhenStarted.ToShortDateString()}";
+            Status = new ClaimStatusViewModel(domainModel.Status);
 
             SetPolicyProperties(domainModel.Policy);
         }
+
+        
 
         private void SetPolicyProperties(PolicyDomainModel policy)
         {

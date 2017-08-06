@@ -11,14 +11,16 @@ namespace EDeviceClaims.Domain.Models
         public string CustomerLastName { get; set; }
         public DateTime WhenStarted { get; set; }
         public PolicyDomainModel Policy { get; set; }
-        public ClaimStatus Status { get; set; }
+        public StatusDomainModel Status { get; set; }
+        public DateTime? WhenLastModified { get; set; }
 
         public ClaimDomainModel(ClaimEntity claim)
         {
             Id = claim.Id;
             WhenStarted = claim.WhenCreated;
+            WhenLastModified = claim.WhenLastModified;
             Policy = new PolicyDomainModel(claim.Policy);
-            Status = claim.Status;
+            Status = new StatusDomainModel(claim.Status);
         }
     }
 }

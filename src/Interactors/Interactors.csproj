@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreateClaimInteractor.cs" />
+    <Compile Include="GetStatusInteractor.cs" />
     <Compile Include="GetPolicyInteractor.cs" />
     <Compile Include="GetProfileInteractor.cs" />
     <Compile Include="GetUserInteractor.cs" />
     <Compile Include="GetClaimInteractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateClaimInteractor.cs" />
     <Compile Include="UpdatePolicyInteractor.cs" />
   </ItemGroup>
   <ItemGroup>
