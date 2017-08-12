@@ -32,10 +32,17 @@ namespace EDeviceClaimSystem.Interactors.Tests
             return new StatusEntity {Id = Guid.NewGuid(), Name = "Irrelevant"};
         }
 
+        private StatusEntity StatusFactory(Guid statusId)
+        {
+            return new StatusEntity {Id = statusId };
+        }
+
         private ClaimEntity ClaimFactory()
         {
             return new ClaimEntity {Id = Guid.NewGuid(), PolicyId = Guid.NewGuid(), StatusId = Guid.NewGuid()};
         }
+
+        
 
         [Test]
         public void UpdateStatus_NewClaimIdAndStatusId_UpdatedClaimHasNewStatusId()
@@ -51,6 +58,22 @@ namespace EDeviceClaimSystem.Interactors.Tests
 
             // Assert
             updatedClaim.StatusId.ShouldNotBe(testValue);
+        }
+
+        [Test]
+        public void UpdateStatus_NewClaimSameStatusId_UpdatedClaimHasSameStatusId()
+        {
+            // Arrange
+            UpdateClaimInteractor interactor = InteractorFactory();
+            ClaimEntity claimToUpdate = ClaimFactory();
+            StatusEntity newStatus = StatusFactory(claimToUpdate.StatusId);
+            var testValue = claimToUpdate.StatusId;
+
+            // Run
+            var updatedClaim = interactor.UpdateStatus(claimToUpdate, newStatus);
+
+            // Assert
+            updatedClaim.StatusId.ShouldBe(testValue);
         }
     }
 }
