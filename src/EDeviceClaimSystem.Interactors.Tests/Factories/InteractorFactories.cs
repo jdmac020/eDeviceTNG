@@ -14,8 +14,7 @@ namespace EDeviceClaimSystem.Interactors.Tests.Factories
         /// <summary>
         /// Instantiate a GetClaimInteractor with a mock repository that mirrors input received
         /// </summary>
-        /// <returns></returns>
-        public static GetClaimInteractor MirrorRepositoryInteractor()
+        public static GetClaimInteractor GetClaimInteractorMirrorRepository()
         {
             IClaimRepository mirrorClaimRepo = new MirrorClaimRepository();
 
@@ -27,12 +26,52 @@ namespace EDeviceClaimSystem.Interactors.Tests.Factories
         /// <summary>
         /// Instantiate a GetClaimInteractor with a mock repository that stores a list of claims to test against
         /// </summary>
-        public static GetClaimInteractor ListRepositoryInteractor(IClaimRepository repository)
+        public static GetClaimInteractor GetClaimInteractorListRepository(IClaimRepository repository)
         {
             var interactor = new GetClaimInteractor(repository);
 
             return interactor;
         }
+
+        /// <summary>
+        /// Instantiate a CreateClaimInteractor with a mock repository that mirrors input received
+        /// </summary>
+        public static CreateClaimInteractor CreateClaimInteractorMirrorRepository()
+        {
+            IClaimRepository mirrorClaimRepo = new MirrorClaimRepository();
+            IStatusRepository mirrorStatusRepo = new MirrorStatusRepository();
+
+            var interactor = new CreateClaimInteractor(mirrorClaimRepo, mirrorStatusRepo);
+
+            return interactor;
+        }
+
+        /// <summary>
+        /// Instantiate an UpdateClaimInteractor with a mock repository that mirrors input received
+        /// </summary>
+        public static UpdateClaimInteractor UpdateClaimInteractorMirrorRepository()
+        {
+            IClaimRepository mirrorClaimRepo = new MirrorClaimRepository();
+            IStatusRepository mirrorStatusRepo = new MirrorStatusRepository();
+
+            var interactor = new UpdateClaimInteractor(mirrorClaimRepo, mirrorStatusRepo);
+
+            return interactor;
+        }
+
+        /// <summary>
+        /// Instantiate an UpdateClaimInteractor with a mock repository that stores a list of claims to test against
+        /// </summary>
+        public static UpdateClaimInteractor UpdateClaimInteractorListrRepository()
+        {
+            IClaimRepository listClaimRepo = new ListClaimRepository();
+            IStatusRepository mirrorStatusRepo = new MirrorStatusRepository();
+
+            var interactor = new UpdateClaimInteractor(listClaimRepo, mirrorStatusRepo);
+
+            return interactor;
+        }
+        
     }
     
 }

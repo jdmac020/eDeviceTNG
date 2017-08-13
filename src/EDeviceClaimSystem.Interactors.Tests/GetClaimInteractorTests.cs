@@ -24,14 +24,14 @@ namespace EDeviceClaimSystem.Interactors.Tests
         public void GetClaimExecute_NewClaimId_RetirievedClaimHasSameId()
         {
             // Arrange
-            GetClaimInteractor interactor = InteractorFactories.MirrorRepositoryInteractor();
-            Guid newClaimId = Guid.NewGuid();
+            GetClaimInteractor interactor = InteractorFactories.GetClaimInteractorMirrorRepository();
+            var claim = ClaimFactories.ClaimFactory();
 
             // Run
-            var newClaim = interactor.GetById(newClaimId);
+            var result = interactor.GetById(claim.Id);
 
             // Assert
-            newClaim.Id.ShouldBe(newClaimId);
+            result.Id.ShouldBe(claim.Id);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace EDeviceClaimSystem.Interactors.Tests
 
             var nonexistingClaimId = Guid.Empty;
 
-            GetClaimInteractor interactor = InteractorFactories.ListRepositoryInteractor(claimRepo);
+            GetClaimInteractor interactor = InteractorFactories.GetClaimInteractorListRepository(claimRepo);
 
             // Act
             var result = interactor.GetById(nonexistingClaimId);
@@ -66,7 +66,7 @@ namespace EDeviceClaimSystem.Interactors.Tests
 
             var nonexistingClaimId = Guid.NewGuid();
 
-            GetClaimInteractor interactor = InteractorFactories.ListRepositoryInteractor(claimRepo);
+            GetClaimInteractor interactor = InteractorFactories.GetClaimInteractorListRepository(claimRepo);
 
             // Act
             var result = interactor.GetById(nonexistingClaimId);

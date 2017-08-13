@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,52 +10,41 @@ using NUnit.Framework;
 using EDeviceClaims.Interactors;
 using EDeviceClaims.Repositories;
 using EDeviceClaimSystem.Interactors.Tests.Mocks;
+using EDeviceClaimSystem.Interactors.Tests.Factories;
 using Shouldly;
-using Shouldly.ShouldlyExtensionMethods;
 
 namespace EDeviceClaimSystem.Interactors.Tests
 {
     [TestFixture]
     public class CreateClaimInteractorTests
     {
-        private CreateClaimInteractor InteractorFactory()
-        {
-            IClaimRepository mirrorClaimRepo = new MirrorClaimRepository();
-            IStatusRepository mirrorStatusRepo = new MirrorStatusRepository();
 
-            var interactor = new CreateClaimInteractor(mirrorClaimRepo, mirrorStatusRepo);
-            
-            return interactor;
+        [Test]
+        public void CreateClaimExecute_NewPolicyId_InsertedClaimHasSamePolicyId()
+        {
+            // Arrange
+            var interactor = InteractorFactories.CreateClaimInteractorMirrorRepository();
+            var newClaim = ClaimFactories.ClaimFactory();
+
+            // Run
+            var result = interactor.Execute(newClaim.PolicyId, newClaim.StatusId);
+
+            // Assert
+            result.PolicyId.ShouldBe(newClaim.PolicyId);
         }
 
         [Test]
-        public void Execute_NewPolicyId_InsertedClaimHasSamePolicyId()
+        public void CreateClaimExecute_NewPolicyId_InsertedClaimHasSameStatus()
         {
             // Arrange
-            CreateClaimInteractor interactor = InteractorFactory();
-            Guid newPolicyId = Guid.NewGuid();
-            Guid newStatus = Guid.NewGuid();
+            var interactor = InteractorFactories.CreateClaimInteractorMirrorRepository();
+            var newClaim = ClaimFactories.ClaimFactory();
 
             // Run
-            var newClaim = interactor.Execute(newPolicyId, newStatus);
+            var result = interactor.Execute(newClaim.PolicyId, newClaim.StatusId);
 
             // Assert
-            newClaim.PolicyId.ShouldBe(newPolicyId);
-        }
-
-        [Test]
-        public void Execute_NewPolicyId_InsertedClaimHasSameStatus()
-        {
-            // Arrange
-            CreateClaimInteractor interactor = InteractorFactory();
-            Guid newPolicyId = Guid.NewGuid();
-            Guid newStatus = Guid.NewGuid();
-
-            // Run
-            var newClaim = interactor.Execute(newPolicyId, newStatus);
-
-            // Assert
-            newClaim.StatusId.ShouldBe(newStatus);
+            result.StatusId.ShouldBe(newClaim.StatusId);
         }
     }
 }

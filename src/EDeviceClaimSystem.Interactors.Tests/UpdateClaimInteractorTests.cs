@@ -8,72 +8,29 @@ using NUnit.Framework;
 
 using EDeviceClaims.Interactors;
 using EDeviceClaims.Repositories;
+using EDeviceClaimSystem.Interactors.Tests.Factories;
 using EDeviceClaimSystem.Interactors.Tests.Mocks;
 using Shouldly;
-using Shouldly.ShouldlyExtensionMethods;
 
 namespace EDeviceClaimSystem.Interactors.Tests
 {
     [TestFixture]
     public class UpdateClaimInteractorTests
     {
-        private UpdateClaimInteractor InteractorFactory()
-        {
-            IClaimRepository mirrorClaimRepo = new MirrorClaimRepository();
-            IStatusRepository mirrorStatusRepo = new MirrorStatusRepository();
-
-            var interactor = new UpdateClaimInteractor(mirrorClaimRepo, mirrorStatusRepo);
-            
-            return interactor;
-        }
-
-        private StatusEntity StatusFactory()
-        {
-            return new StatusEntity {Id = Guid.NewGuid(), Name = "Irrelevant"};
-        }
-
-        private StatusEntity StatusFactory(Guid statusId)
-        {
-            return new StatusEntity {Id = statusId };
-        }
-
-        private ClaimEntity ClaimFactory()
-        {
-            return new ClaimEntity {Id = Guid.NewGuid(), PolicyId = Guid.NewGuid(), StatusId = Guid.NewGuid()};
-        }
-
-        
 
         [Test]
         public void UpdateStatus_NewClaimIdAndStatusId_UpdatedClaimHasNewStatusId()
         {
             // Arrange
-            UpdateClaimInteractor interactor = InteractorFactory();
-            ClaimEntity claimToUpdate = ClaimFactory();
-            StatusEntity newStatus = StatusFactory();
-            var testValue = claimToUpdate.StatusId;
+            var interactor = InteractorFactories.UpdateClaimInteractorMirrorRepository();
+            ClaimEntity claimToUpdate = ClaimFactories.ClaimFactory();
+            StatusEntity newStatus = StatusFactories.StatusactoryCustomName("Closed");
 
             // Run
-            var updatedClaim = interactor.UpdateStatus(claimToUpdate, newStatus);
+            var result = interactor.UpdateStatus(claimToUpdate, newStatus);
 
             // Assert
-            updatedClaim.StatusId.ShouldNotBe(testValue);
-        }
-
-        [Test]
-        public void UpdateStatus_NewClaimSameStatusId_UpdatedClaimHasSameStatusId()
-        {
-            // Arrange
-            UpdateClaimInteractor interactor = InteractorFactory();
-            ClaimEntity claimToUpdate = ClaimFactory();
-            StatusEntity newStatus = StatusFactory(claimToUpdate.StatusId);
-            var testValue = claimToUpdate.StatusId;
-
-            // Run
-            var updatedClaim = interactor.UpdateStatus(claimToUpdate, newStatus);
-
-            // Assert
-            updatedClaim.StatusId.ShouldBe(testValue);
+            result.StatusId.ShouldBe(newStatus.Id);
         }
     }
 }

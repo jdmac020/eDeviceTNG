@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\StatusFactories.cs" />
     <Compile Include="Factories\ClaimFactories.cs" />
     <Compile Include="Factories\InteractorFactories.cs" />
     <Compile Include="Factories\RespositoryFactories.cs" />
