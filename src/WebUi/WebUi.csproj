@@ -318,9 +318,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <EmbeddedResource Include="Content\Images\image.jpg">
+    <Content Include="Content\Images\image.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -369,8 +369,12 @@
     <Content Include="Views\Home\Index.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Claim\StartClaim.cshtml" />
-    <Content Include="Views\Claim\ViewClaim.cshtml" />
+    <Content Include="Views\Claim\StartClaim.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Claim\ViewClaim.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Devices\_claimButton.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

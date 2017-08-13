@@ -87,7 +87,7 @@ namespace EDeviceClaims.Domain.Services
             {
                 var newClaimEntity = CreateClaimInteractor.Execute(policyId, openStatus.Id);
 
-                newClaimEntity.Status = GetStatusInteractor.GetByName(newClaimEntity.StatusName);
+                newClaimEntity.Status = GetStatusInteractor.GetById(newClaimEntity.StatusId);
                 newClaimEntity.Policy = policy;
 
                 return new ClaimDomainModel(newClaimEntity);
