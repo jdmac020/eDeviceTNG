@@ -303,14 +303,7 @@
     <Content Include="Areas\Underwriter\Views\Claims\_claimNotesTable.cshtml" />
     <Content Include="Areas\Underwriter\Views\Claims\Edit.cshtml" />
     <Content Include="Areas\Underwriter\Views\Claims\_updateClaim.cshtml" />
-    <None Include="Properties\PublishProfiles\Auto.pubxml" />
-    <None Include="Properties\PublishProfiles\EDeviceTNG - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\EDeviceTNG - FTP %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\EDeviceTNG - FTP %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\EDeviceTNG - Web Deploy %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\EDeviceTNG - Web Deploy %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\EDeviceTNG - Web Deploy %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\EDeviceTNG - Web Deploy %285%29.pubxml" />
+    <None Include="Properties\PublishProfiles\EDevicesTNG - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\device_details.js" />
     <Content Include="Scripts\indexJavaScript.js" />
