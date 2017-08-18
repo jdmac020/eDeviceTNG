@@ -69,6 +69,8 @@
     <Compile Include="Factories\ClaimFactories.cs" />
     <Compile Include="Factories\InteractorFactories.cs" />
     <Compile Include="Factories\RespositoryFactories.cs" />
+    <Compile Include="GetPolicyInteractorTests.cs" />
+    <Compile Include="GetProfileInteractorTests.cs" />
     <Compile Include="Mocks\ListClaimRepository.cs" />
     <Compile Include="UpdateClaimInteractorTests.cs" />
     <Compile Include="GetClaimInteractorTests.cs" />
