@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EDeviceClaims.Entities;
 
-namespace EDeviceClaimSystem.Interactors.Tests.Factories
+namespace EDeviceClaimSystem.Interactors.Tests.Factories.EntityFactories
 {
-    public static class ClaimFactories
+    public static class ClaimFactory
     {
         /// <summary>
         /// Returns a new ClaimEntity with new Guids for Id, PolicyId, and StatusId
         /// </summary>
-        public static ClaimEntity ClaimFactory()
+        public static ClaimEntity Create()
         {
             return new ClaimEntity {Id = Guid.NewGuid(), PolicyId = Guid.NewGuid(), StatusId = Guid.NewGuid()};
         }
@@ -20,15 +16,15 @@ namespace EDeviceClaimSystem.Interactors.Tests.Factories
         /// <summary>
         /// Returns a new ClaimEntity with passed Guid for Id and new Guids for PolicyId and StatusId
         /// </summary>
-        public static ClaimEntity ClaimFactoryCustomId(Guid id)
+        public static ClaimEntity Create(Guid claimId)
         {
-            return new ClaimEntity { Id = id, PolicyId = Guid.NewGuid(), StatusId = Guid.NewGuid() };
+            return new ClaimEntity { Id = claimId, PolicyId = Guid.NewGuid(), StatusId = Guid.NewGuid() };
         }
 
         /// <summary>
         /// Returns a new ClaimEntity with passed Guid for PolicyId and new Guids for Id and StatusId
         /// </summary>
-        public static ClaimEntity ClaimFactoryCustomPolicy(Guid policyId)
+        public static ClaimEntity CreateCustomPolicy(Guid policyId)
         {
             return new ClaimEntity { Id = Guid.NewGuid(), PolicyId = policyId, StatusId = Guid.NewGuid() };
         }
@@ -36,7 +32,7 @@ namespace EDeviceClaimSystem.Interactors.Tests.Factories
         /// <summary>
         /// Returns a new ClaimEntity with passed Guid for StatusId and new Guids for Id and PolicyId
         /// </summary>
-        public static ClaimEntity ClaimFactoryCustomStatus(Guid statusId)
+        public static ClaimEntity CreateCustomStatus(Guid statusId)
         {
             return new ClaimEntity { Id = Guid.NewGuid(), PolicyId = Guid.NewGuid(), StatusId = statusId };
         }
@@ -44,9 +40,9 @@ namespace EDeviceClaimSystem.Interactors.Tests.Factories
         /// <summary>
         /// Returns a new ClaimEntity with passed Guids for Id, PolicyId, and StatusId
         /// </summary>
-        public static ClaimEntity ClaimFactoryCustom(Guid id, Guid policyId, Guid statusId)
+        public static ClaimEntity Create(Guid claimId, Guid policyId, Guid statusId)
         {
-            return new ClaimEntity { Id = id, PolicyId = policyId, StatusId = statusId };
+            return new ClaimEntity { Id = claimId, PolicyId = policyId, StatusId = statusId };
         }
     }
 }

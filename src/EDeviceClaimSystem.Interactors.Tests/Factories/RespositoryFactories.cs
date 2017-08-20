@@ -7,19 +7,19 @@ using EDeviceClaimSystem.Interactors.Tests.Mocks;
 
 namespace EDeviceClaimSystem.Interactors.Tests.Factories
 {
-    public static class RespositoryFactories
+    public static class RespositoryFactoriesClass
     {
-        public static MirrorClaimRepository MirrorClaimRepoFactory()
+        public static MirrorClaimRepository CreateMirrorClaimRepo()
         {
             return new MirrorClaimRepository();
         }
 
-        public static ListClaimRepository ListClaimRepoFactory()
+        public static ListClaimRepository CreateListClaimRepo()
         {
             return new ListClaimRepository();
         }
 
-        public static MirrorStatusRepository MirorStatusRepoFactory()
+        public static MirrorStatusRepository CreateMirrorStatusRepo()
         {
             return new MirrorStatusRepository();
         }

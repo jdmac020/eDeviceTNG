@@ -26,12 +26,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -65,17 +66,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\StatusFactories.cs" />
-    <Compile Include="Factories\ClaimFactories.cs" />
-    <Compile Include="Factories\InteractorFactories.cs" />
+    <Compile Include="Factories\InteractorFactories\CreateClaimInteractorFactory.cs" />
+    <Compile Include="Factories\InteractorFactories\GetClaimInteractorFactory.cs" />
+    <Compile Include="Factories\InteractorFactories\UpdateClaimInteractorFactory.cs" />
+    <Compile Include="Factories\EntityFactories\StatusFactory.cs" />
+    <Compile Include="Factories\EntityFactories\ClaimFactory.cs" />
+    <Compile Include="Factories\RepositoryFactories\PolicyRepositoryFactory.cs" />
+    <Compile Include="Factories\RepositoryFactories\ClaimRepositoryFactory.cs" />
+    <Compile Include="Factories\RepositoryFactories\StatusRepositoryFactory.cs" />
     <Compile Include="Factories\RespositoryFactories.cs" />
-    <Compile Include="GetPolicyInteractorTests.cs" />
-    <Compile Include="GetProfileInteractorTests.cs" />
+    <Compile Include="Tests\GetPolicyInteractorTests.cs" />
+    <Compile Include="Tests\GetProfileInteractorTests.cs" />
     <Compile Include="Mocks\ListClaimRepository.cs" />
-    <Compile Include="UpdateClaimInteractorTests.cs" />
-    <Compile Include="GetClaimInteractorTests.cs" />
+    <Compile Include="Mocks\MirrorPolicyRepository.cs" />
+    <Compile Include="Tests\UpdateClaimInteractorTests.cs" />
+    <Compile Include="Tests\GetClaimInteractorTests.cs" />
     <Compile Include="Mocks\MirrorClaimRepository.cs" />
-    <Compile Include="CreateClaimInteractorTests.cs" />
+    <Compile Include="Tests\CreateClaimInteractorTests.cs" />
     <Compile Include="Mocks\MirrorStatusRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using EDeviceClaimSystem.Interactors.Tests.Factories.EntityFactories;
+using EDeviceClaimSystem.Interactors.Tests.Factories.InteractorFactories;
 using NUnit.Framework;
-
-using EDeviceClaims.Interactors;
-using EDeviceClaims.Repositories;
-using EDeviceClaimSystem.Interactors.Tests.Mocks;
-using EDeviceClaimSystem.Interactors.Tests.Factories;
 using Shouldly;
 
-namespace EDeviceClaimSystem.Interactors.Tests
+namespace EDeviceClaimSystem.Interactors.Tests.Tests
 {
     [TestFixture]
     public class CreateClaimInteractorTests
@@ -23,8 +13,8 @@ namespace EDeviceClaimSystem.Interactors.Tests
         public void CreateClaimExecute_NewPolicyId_InsertedClaimHasSamePolicyId()
         {
             // Arrange
-            var interactor = InteractorFactories.CreateClaimInteractorMirrorRepository();
-            var newClaim = ClaimFactories.ClaimFactory();
+            var interactor = CreateClaimInteractorFactory.Create();
+            var newClaim = ClaimFactory.Create();
 
             // Run
             var result = interactor.Execute(newClaim.PolicyId, newClaim.StatusId);
@@ -37,8 +27,8 @@ namespace EDeviceClaimSystem.Interactors.Tests
         public void CreateClaimExecute_NewPolicyId_InsertedClaimHasSameStatus()
         {
             // Arrange
-            var interactor = InteractorFactories.CreateClaimInteractorMirrorRepository();
-            var newClaim = ClaimFactories.ClaimFactory();
+            var interactor = CreateClaimInteractorFactory.Create();
+            var newClaim = ClaimFactory.Create();
 
             // Run
             var result = interactor.Execute(newClaim.PolicyId, newClaim.StatusId);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using EDeviceClaims.Entities;
 using EDeviceClaims.Repositories;
 
@@ -11,13 +12,12 @@ namespace EDeviceClaimSystem.Interactors.Tests.Mocks
         
         public List<ClaimEntity> GetAllOpen()
         {
-            
-            return _claims;
+            return _claims.Where(c => c.StatusName == "Open").ToList();
         }
 
         public new void Create(ClaimEntity claim)
         {
-            _claims.Add(new ClaimEntity {Id = claim.Id, PolicyId = claim.PolicyId, StatusId = claim.StatusId});
+            _claims.Add(new ClaimEntity {Id = claim.Id, PolicyId = claim.PolicyId, StatusId = claim.StatusId, StatusName = claim.StatusName});
         }
 
         public new void Update(ClaimEntity claim)
