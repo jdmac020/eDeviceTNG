@@ -73,10 +73,11 @@ namespace EDeviceClaims.Domain.Services
         public ClaimDomainModel StartClaim(Guid policyId)
         {
             var policy = GetPolicyInteractor.GetById(policyId);
+            var openStatus = GetStatusInteractor.GetByName("New");
 
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
             
-            var existingClaimEntity = GetClaimInteractor.Execute(policyId);
+            var existingClaimEntity = GetClaimInteractor.GetById(policyId);
             
             if (existingClaimEntity != null)
             {
@@ -84,9 +85,9 @@ namespace EDeviceClaims.Domain.Services
             }
             else
             {
-                var newClaimEntity = CreateClaimInteractor.Execute(policyId);
+                var newClaimEntity = CreateClaimInteractor.Execute(policyId, openStatus.Id);
 
-                newClaimEntity.Status = GetStatusInteractor.ExecuteForId(newClaimEntity.StatusId);
+                newClaimEntity.Status = GetStatusInteractor.GetById(newClaimEntity.StatusId);
                 newClaimEntity.Policy = policy;
 
                 return new ClaimDomainModel(newClaimEntity);
@@ -100,7 +101,7 @@ namespace EDeviceClaims.Domain.Services
 
             if (policy == null) throw new ArgumentException("There is no policy for that ID.");
 
-            var existingClaim = GetClaimInteractor.Execute(policyId);
+            var existingClaim = GetClaimInteractor.GetById(policyId);
             
             return GetCustomerNameForClaim(existingClaim);
 
@@ -108,7 +109,7 @@ namespace EDeviceClaims.Domain.Services
         
         public ClaimDomainModel GetById(Guid id)
         {
-            var claim = GetClaimInteractor.Execute(id);
+            var claim = GetClaimInteractor.GetById(id);
             if(claim == null) throw new ArgumentException("Claim does not exist");
 
             return GetCustomerNameForClaim(claim);
@@ -131,7 +132,10 @@ namespace EDeviceClaims.Domain.Services
 
         public void UpdateClaimStatus(Guid claimId, Guid statusId)
         {
-            UpdateClaimInteractor.UpdateStatus(claimId, statusId);
+            var claim = GetClaimInteractor.GetById(claimId);
+            var status = GetStatusInteractor.GetById(statusId);
+
+            UpdateClaimInteractor.UpdateStatus(claim, status);
         }
 
         protected ClaimDomainModel GetCustomerNameForClaim(ClaimEntity existingClaim)

@@ -5,8 +5,10 @@ using System.Web.Mvc;
 using EDeviceClaims.Core;
 using EDeviceClaims.Domain.Services;
 using EDeviceClaims.Entities;
+using EDeviceClaims.Repositories.Contexts;
 using EDeviceClaims.WebUi.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebUi;
@@ -167,7 +169,8 @@ namespace EDeviceClaims.WebUi.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AuthorizedUser { UserName = model.Email, Email = model.Email };
+
+                var user = new AuthorizedUser {UserName = model.Email, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

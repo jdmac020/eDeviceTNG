@@ -7,7 +7,7 @@ namespace EDeviceClaims.Interactors
 {
     public interface IGetClaimInteractor
     {
-        ClaimEntity Execute(Guid id);
+        ClaimEntity GetById(Guid id);
         List<ClaimEntity> GetAllOpen();
     }
 
@@ -28,7 +28,7 @@ namespace EDeviceClaims.Interactors
             _repo = claimRepo;
         }
 
-        public ClaimEntity Execute(Guid id)
+        public ClaimEntity GetById(Guid id)
         {
             return Repo.GetById(id);
         }

@@ -11,7 +11,7 @@ namespace EDeviceClaims.Interactors
 {
     public interface ICreateClaimInteractor
     {
-        ClaimEntity Execute(Guid id);
+        ClaimEntity Execute(Guid policyId, Guid statusId);
     }
 
     public class CreateClaimInteractor : ICreateClaimInteractor
@@ -39,10 +39,9 @@ namespace EDeviceClaims.Interactors
         }
 
         
-        public ClaimEntity Execute(Guid id)
+        public ClaimEntity Execute(Guid policyId, Guid statusId)
         {
-            var initialStatus = StatusRepo.GetByName("New");
-            var newClaim = new ClaimEntity() {Id = Guid.NewGuid(), PolicyId = id, StatusId = initialStatus.Id};
+            var newClaim = new ClaimEntity() {Id = Guid.NewGuid(), PolicyId = policyId, StatusId = statusId };
             newClaim = ClaimRepo.Create(newClaim);
 
             return newClaim;

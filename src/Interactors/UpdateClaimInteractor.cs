@@ -1,14 +1,26 @@
 using System;
+using EDeviceClaims.Entities;
 using EDeviceClaims.Repositories;
 
 namespace EDeviceClaims.Interactors
 {
     public interface IUpdateClaimInteractor
     {
-        void UpdateStatus(Guid claimId, Guid statusId);
+        ClaimEntity UpdateStatus(ClaimEntity claim, StatusEntity status);
     }
     public class UpdateClaimInteractor : IUpdateClaimInteractor
     {
+        public UpdateClaimInteractor()
+        {
+            
+        }
+
+        public UpdateClaimInteractor(IClaimRepository claimRepository, IStatusRepository statusRepository)
+        {
+            _claimRepo = claimRepository;
+            _statusRepo = statusRepository;
+        }
+
         private IClaimRepository _claimRepo;
 
         private IClaimRepository ClaimRepo
@@ -25,15 +37,17 @@ namespace EDeviceClaims.Interactors
             set { _statusRepo = value; }
         }
 
-        public void UpdateStatus(Guid claimId, Guid statusId)
+        public ClaimEntity UpdateStatus(ClaimEntity claim, StatusEntity status)
         {
-            var claim = ClaimRepo.GetById(claimId);
-            var newStatus = StatusRepo.GetById(statusId);
 
-            claim.Status = newStatus;
+            claim.Status = status;
+            claim.StatusId = status.Id;
+            claim.StatusName = status.Name;
             claim.WhenLastModified = DateTime.Now;
 
             ClaimRepo.Update(claim);
+
+            return claim;
         }
     }
 }

@@ -46,6 +46,18 @@ namespace EDeviceClaims.Repositories.Migrations
             CreateUser("admin@company.com", "admin@company.com", "Admin", "Guy", context, AppRoles.Admin);
             CreateUser("callcenter@company.com", "callcenter@company.com", "Under", "Writer", context, AppRoles.Underwriter);
 
+            var amanda = CreateUser("amanda@personal.com", "amanda@personal.com", "Amanda", "M", context);
+            var julie = CreateUser("julie@personal.com", "julie@personal.com", "Julie", "W", context);
+            var david = CreateUser("david@personal.com", "david@personal.com", "Dave", "M", context);
+            var katie = CreateUser("katie@personal.com", "katie@personal.com", "Katie", "M", context);
+            var jeannine = CreateUser("jeannine@personal.com", "jeannine@personal.com", "Jeannine", "K", context);
+            var sam = CreateUser("sam@personal.com", "sam@personal.com", "Sam", "K", context);
+            var ali = CreateUser("ali@personal.com", "ali@personal.com", "Ali", "K", context);
+            var joe = CreateUser("joe@personal.com", "joe@personal.com", "Joe", "S", context);
+            var maria = CreateUser("marias@personal.com", "marias@personal.com", "Maria", "S", context);
+            var elizabeth = CreateUser("elizabeth@personal.com", "elizabeth@personal.com", "Liz", "M", context);
+            var mariap = CreateUser("mariap@personal.com", "mariap@personal.com", "Maria", "P", context);
+
             var p1 = new Policy
             {
                 Id = Guid.NewGuid(),
@@ -69,10 +81,220 @@ namespace EDeviceClaims.Repositories.Migrations
             var p3 = new Policy
             {
                 Id = Guid.NewGuid(),
-                Number = "8675",
-                SerialNumber = "309",
-                DeviceName = "Windows",
-                CustomerEmail = "joe@personal.com"
+                Number = "123",
+                SerialNumber = "ABC",
+                DeviceName = "MacBook",
+                CustomerEmail = "amanda@personal.com",
+                UserId = amanda.Id
+            };
+            var p4 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "456",
+                SerialNumber = "DEF",
+                DeviceName = "Android",
+                CustomerEmail = "amanda@personal.com",
+                UserId = amanda.Id
+
+            };
+
+            var p5 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "789",
+                SerialNumber = "GHI",
+                DeviceName = "Samsung Sx",
+                CustomerEmail = "julie@personal.com",
+                UserId = julie.Id
+            };
+            var p6 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "012",
+                SerialNumber = "JKL",
+                DeviceName = "Kindle",
+                CustomerEmail = "user@personal.com",
+                UserId = julie.Id
+
+            };
+
+            var p7 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "345",
+                SerialNumber = "MNO",
+                DeviceName = "Palm+",
+                CustomerEmail = "david@personal.com",
+                UserId = david.Id
+            };
+            var p8 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "678",
+                SerialNumber = "PQR",
+                DeviceName = "Echo",
+                CustomerEmail = "david@personal.com",
+                UserId = david.Id
+
+            };
+
+            var p9 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "901",
+                SerialNumber = "STU",
+                DeviceName = "Samsung Sx",
+                CustomerEmail = "katie@personal.com",
+                UserId = katie.Id
+            };
+            var p10 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "234",
+                SerialNumber = "VWX",
+                DeviceName = "Toshiba",
+                CustomerEmail = "katie@personal.com",
+                UserId = katie.Id
+
+            };
+
+            var p11 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "567",
+                SerialNumber = "YZA",
+                DeviceName = "iPhone 6+",
+                CustomerEmail = "jeannine@personal.com",
+                UserId = jeannine.Id
+            };
+            var p12 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "890",
+                SerialNumber = "BCD",
+                DeviceName = "iPad",
+                CustomerEmail = "jeannine@personal.com",
+                UserId = jeannine.Id
+
+            };
+
+            var p13 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "123",
+                SerialNumber = "EFG",
+                DeviceName = "Nintendo Switch",
+                CustomerEmail = "sam@personal.com",
+                UserId = sam.Id
+            };
+            var p14 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "456",
+                SerialNumber = "HIJ",
+                DeviceName = "iPadMini",
+                CustomerEmail = "sam@personal.com",
+                UserId = sam.Id
+
+            };
+
+            var p15 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "789",
+                SerialNumber = "IKL",
+                DeviceName = "Nintendo DS",
+                CustomerEmail = "ali@personal.com",
+                UserId = ali.Id
+            };
+            var p16 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "012",
+                SerialNumber = "MNO",
+                DeviceName = "iPhone4",
+                CustomerEmail = "ali@personal.com",
+                UserId = ali.Id
+
+            };
+
+            var p17 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "345",
+                SerialNumber = "PQR",
+                DeviceName = "iPhone 6+",
+                CustomerEmail = "joe@personal.com",
+                UserId = joe.Id
+            };
+            var p18 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "678",
+                SerialNumber = "STU",
+                DeviceName = "Dell",
+                CustomerEmail = "joe@personal.com",
+                UserId = joe.Id
+
+            };
+
+            var p19 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "901",
+                SerialNumber = "VWX",
+                DeviceName = "Moto",
+                CustomerEmail = "marias@personal.com",
+                UserId = maria.Id
+            };
+            var p20 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "234",
+                SerialNumber = "YZA",
+                DeviceName = "Dell",
+                CustomerEmail = "marias@personal.com",
+                UserId = maria.Id
+
+            };
+
+            var p21 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "567",
+                SerialNumber = "BCD",
+                DeviceName = "Moto",
+                CustomerEmail = "elizabeth@personal.com",
+                UserId = elizabeth.Id
+            };
+            var p22 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "890",
+                SerialNumber = "EFG",
+                DeviceName = "Surface",
+                CustomerEmail = "elizabeth@personal.com",
+                UserId = elizabeth.Id
+
+            };
+
+            var p23 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "123",
+                SerialNumber = "HIJ",
+                DeviceName = "iPhone 6+",
+                CustomerEmail = "mariap@personal.com",
+                UserId = mariap.Id
+            };
+            var p24 = new Policy
+            {
+                Id = Guid.NewGuid(),
+                Number = "456",
+                SerialNumber = "KLM",
+                DeviceName = "MacBook",
+                CustomerEmail = "mariap@personal.com",
+                UserId = mariap.Id
 
             };
 
@@ -81,6 +303,26 @@ namespace EDeviceClaims.Repositories.Migrations
               p1,
               p2,
               p3,
+              p4,
+              p5,
+              p6,
+              p7,
+              p8,
+              p9,
+              p10,
+              p11,
+              p12,
+              p13,
+              p14,
+              p15,
+              p16,
+              p17,
+              p18,
+              p20,
+              p21,
+              p22,
+              p23,
+              p24,
               new Policy { Id = Guid.NewGuid(), Number = "11121", SerialNumber = "MNOPQ", DeviceName = "iPhone 6+", CustomerEmail = "d@b.com" },
               new Policy { Id = Guid.NewGuid(), Number = "31415", SerialNumber = "RSTUV", DeviceName = "iPhone 6+", CustomerEmail = "e@b.com" },
               new Policy { Id = Guid.NewGuid(), Number = "16171", SerialNumber = "WXYZA", DeviceName = "iPhone 6+", CustomerEmail = "f@b.com" },

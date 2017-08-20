@@ -1,5 +1,76 @@
 ﻿@model EDeviceClaims.WebUi.Models.ClaimViewModel
 
-<h2>StartClaim</h2>
+<h2 class="centerElement">Claim # @Model.Id Has Been Opened!</h2>
 
-Claim ID = @Model.Id
+<div>
+    
+    @Html.Partial("_claimDetailsTable")
+    @Html.Partial("_claimNotesTable")
+
+</div>
+
+<div id="buttons">
+    @*@Html.Partial("_claimButton", Model)*@
+
+    @Html.ActionLink("Back to Devices", "Index", "Devices", routeValues: null, htmlAttributes: new { Class = "btn btn-danger btn-lg" })
+
+</div>
+
+<style>
+    
+    .centerElement {
+        text-align: center;
+        padding-top: 2%;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
+    #notesPlaceHolder {
+        text-align: center;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
+    #buttons {
+        text-align: center;
+        padding-top: 10%;
+        margin-left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+
+    table#claimListTable {
+        margin: auto;
+        width: 30%;
+        background-color: #f1f1c1;
+        text-align: center;
+    }
+
+    table#claimListTable tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    table#claimListTable tr:nth-child(odd) {
+        background-color: #fff;
+    }
+
+    table#claimListTable th {
+        color: black;
+        background-color: gray;
+        text-align: left;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+</style>

@@ -29,7 +29,7 @@ namespace EDeviceClaims.Domain.Services
         
         public StatusDomainModel GetById(Guid id)
         {
-            var status = GetStatusInteractor.ExecuteForId(id);
+            var status = GetStatusInteractor.GetById(id);
             if(status == null) throw new ArgumentException("Status does not exist");
 
             return new StatusDomainModel(status);
@@ -37,7 +37,7 @@ namespace EDeviceClaims.Domain.Services
 
         public StatusDomainModel GetByName(string name)
         {
-            var status = GetStatusInteractor.ExecuteForName(name);
+            var status = GetStatusInteractor.GetByName(name);
             if (status == null) throw new ArgumentException("Status does not exist");
 
             return new StatusDomainModel(status);
@@ -45,7 +45,7 @@ namespace EDeviceClaims.Domain.Services
 
         public List<StatusDomainModel> GetAll()
         {
-            var statusEntities = GetStatusInteractor.ExecuteForAll();
+            var statusEntities = GetStatusInteractor.GetAll();
 
             return statusEntities
                 .Select(status => new StatusDomainModel(status))
